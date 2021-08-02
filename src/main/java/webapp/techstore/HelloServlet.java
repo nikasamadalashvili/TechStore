@@ -14,9 +14,9 @@ public class HelloServlet extends HttpServlet {
     private TestServiceOne testServiceOne;
     @Inject
     private TestServiceTwo serviceTwo;
-    //@Inject
-    //private SecurityContext securityContext;
     @Inject
+    private SecurityContext securityContext;
+   @Inject
     private SecurityContext identityStoreHandler;
 
     private String message;
