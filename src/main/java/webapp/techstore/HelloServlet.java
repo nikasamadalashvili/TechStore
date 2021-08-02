@@ -3,6 +3,8 @@ package webapp.techstore;
 import java.io.*;
 import java.security.Principal;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.identitystore.IdentityStoreHandler;
 import javax.servlet.http.*;
@@ -17,7 +19,8 @@ public class HelloServlet extends HttpServlet {
     @Inject
     private SecurityContext securityContext;
    @Inject
-    private SecurityContext identityStoreHandler;
+   private repo rep;
+
 
     private String message;
 
@@ -26,6 +29,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        rep.update();
         response.setContentType("text/html");
         //Principal callerPrincipal = securityContext.getUserPrincipal();
         // Hello
