@@ -18,8 +18,8 @@ public class HelloServlet extends HttpServlet {
     private TestServiceTwo serviceTwo;
     @Inject
     private SecurityContext securityContext;
-   @Inject
-   private repo rep;
+    @Inject
+    private jdbcConfig db;
 
 
     private String message;
@@ -29,7 +29,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        rep.update();
+        db.getAll();
         response.setContentType("text/html");
         //Principal callerPrincipal = securityContext.getUserPrincipal();
         // Hello
