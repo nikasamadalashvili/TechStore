@@ -1,16 +1,28 @@
 package webapp.techstore;
 
 import javax.enterprise.context.RequestScoped;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 @RequestScoped
 public class jdbcConfig {
 
+
     public Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/test","sopochokheli","Tantalikovol1!");
-        return con;
+        Properties properties;
+        try {
+            properties = PropertyReader.getProperties();
+            Class.forName(properties.getProperty("datasource.jdbc.driver-class-name"));
+            Connection con= DriverManager.getConnection(
+                    properties.getProperty("datasource.jdbc.url"),
+                    properties.getProperty("datasource.jdbc.username"),
+                    properties.getProperty("datasource.jdbc.password"));
+            return con;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void getAll() {
