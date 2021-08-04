@@ -7,35 +7,22 @@ import java.util.Properties;
 
 @RequestScoped
 public class jdbcConfig {
+    Connection connection;
 
-
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
-        Properties properties;
+    public jdbcConfig() {
         try {
-            properties = PropertyReader.getProperties();
-            Class.forName(properties.getProperty("datasource.jdbc.driver-class-name"));
-            Connection con= DriverManager.getConnection(
-                    properties.getProperty("datasource.jdbc.url"),
-                    properties.getProperty("datasource.jdbc.username"),
-                    properties.getProperty("datasource.jdbc.password"));
-            return con;
-        } catch (IOException e) {
-            e.printStackTrace();
+            connection = DataSource.getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return null;
     }
 
     public void getAll() {
-        Connection con = null;
         try {
-            con = getConnection();
-            Statement stmt=con.createStatement();
+            Statement stmt=connection.createStatement();
             ResultSet rs=stmt.executeQuery("select * from demo");
             while(rs.next())
                 System.out.println(rs.getInt(1)+"  "+rs.getString(2));
-            con.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
