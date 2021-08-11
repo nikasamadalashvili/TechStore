@@ -1,0 +1,14 @@
+login
+users: superadmin / admin / regular
+
+*REGULAR*: see/filter products, add to cart(RESERVE!), buy
+*ADMIN*: REGULAR + add/delete products to shop + 
+*SUPER-ADMIN*: GODMODE (admin + register/delete people) 
+
+TABLES:
+users: userID, name, email, password, username, email, roleID(FK), nameOfImage, 
+roles: roleID, roleName(admin/regular), roleClaim(LONG_INT)
+products: productID, *MAXASIATEBLEBI*, imageNames,  
+ShoppingCartObjects: shoppingCartObjID(PK), userID(FK), productID(DK), immutableTotalCost, totalQuantity
+CreditCards: Credit_Card_ID(PK), cardNumber, exp_date, cvv, userID(FK)
+LOGS: action_ID, action_time, action_type, old_val, new_val, user_ID(vin kna), action_areal  
