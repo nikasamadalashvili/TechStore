@@ -1,11 +1,9 @@
-package webapp.techstore;
+package web.app.TechStore.TechStore;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Model;
-import javax.inject.Named;
 
-@RequestScoped
+@ApplicationScoped
 public class TestServiceTwo {
 
     public String greeting() {

@@ -1,14 +1,10 @@
-package webapp.techstore;
+package web.app.TechStore.TechStore;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Scope;
-import javax.inject.Singleton;
 
-@RequestScoped
+@ApplicationScoped
 public class TestServiceOne {
 
     private TestServiceTwo serviceTwo;
@@ -18,9 +14,6 @@ public class TestServiceOne {
         this.serviceTwo = serviceTwo;
     }
 
-    protected TestServiceOne() {
-        this(null);
-    }
 
     public String greetingFromServiceOne() {
         return serviceTwo.greeting() + "and greeting from service one";

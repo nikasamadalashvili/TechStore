@@ -3,7 +3,25 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
-    <persistence-unit name="default">
+    <persistence-unit name="tech-store">
 
+        <class>web.app.TechStore.TechStore.DomainModels.AdditionalSpecs</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Camera</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Display</class>
+        <class>web.app.TechStore.TechStore.DomainModels.GeneralInfo</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Gps</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Memory</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Processor</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Products</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Roles</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Sensors</class>
+        <class>web.app.TechStore.TechStore.DomainModels.Users</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/techStore"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.user" value="sopochokheli"/>
+            <property name="hibernate.connection.password" value="Tantalikovol1!"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
     </persistence-unit>
 </persistence>
