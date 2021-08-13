@@ -1,6 +1,8 @@
 package web.app.TechStore.TechStore;
 
 import web.app.TechStore.TechStore.DomainModels.Gps;
+import web.app.TechStore.TechStore.service.models.MobileDetailsRequest;
+import web.app.TechStore.TechStore.service.models.MobileService;
 
 import java.io.*;
 import java.util.List;
@@ -26,27 +28,15 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getServletContext();
         response.setContentType("text/html");
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tech-store");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+        MobileService mobileService = (MobileService) request.getServletContext().getAttribute("mobileService");
 
-        try {
-            transaction.begin();
-            List<String> test = entityManager.createQuery("select s.aGps from Gps s").getResultList();
-            test.forEach(System.out :: println);
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            entityManager.close();
-            entityManagerFactory.close();
-        }
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        out.println("<h2>" + testServiceOne.greetingFromServiceOne() + "<h2>");
+        out.println("<h2>" + mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getName() + "<h2>");
         out.println("</body></html>");
     }
 

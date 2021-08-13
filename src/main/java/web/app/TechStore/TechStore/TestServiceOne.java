@@ -7,15 +7,15 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class TestServiceOne {
 
-    private TestServiceTwo serviceTwo;
-
-    @Inject
-    public TestServiceOne(TestServiceTwo serviceTwo) {
-        this.serviceTwo = serviceTwo;
-    }
+//    private TestServiceTwo serviceTwo;
+//
+//    @Inject
+//    public TestServiceOne(TestServiceTwo serviceTwo) {
+//        this.serviceTwo = serviceTwo;
+//    }
 
 
     public String greetingFromServiceOne() {
-        return serviceTwo.greeting() + "and greeting from service one";
+        return "and greeting from service one";
     }
 }
