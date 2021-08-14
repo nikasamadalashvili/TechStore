@@ -5,6 +5,7 @@ import web.app.TechStore.TechStore.service.MobileService;
 import web.app.TechStore.TechStore.service.models.FilteredMobileListRequest;
 import web.app.TechStore.TechStore.service.models.FilteredMobileListResponse;
 import web.app.TechStore.TechStore.service.models.MobileDetailsRequest;
+import web.app.TechStore.TechStore.service.models.MobileDetailsResponse;
 
 import java.io.*;
 import java.util.List;
@@ -24,11 +25,13 @@ public class ProductServlet extends HttpServlet {
         request.getServletContext();
         response.setContentType("text/html");
         MobileService mobileService = (MobileService) request.getServletContext().getAttribute("mobileService");
-        FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest("xiaomi"));
+        //FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest("xiaomi"));
+        //MobileDetailsResponse responseResult = mobileService.getMobileDetails(new MobileDetailsRequest(1L));
         // Hello
+        String a = mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getFingerprint();
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h2>" + mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getName() + "<h2>");
+        out.println("<h2>" + a + "<h2>");
         out.println("</body></html>");
     }
 
