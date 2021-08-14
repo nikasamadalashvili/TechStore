@@ -20,7 +20,7 @@ public class MobileService {
         this.entityManager = entityManager;
     }
 
-    //doesnt return foreign keys
+    /*Does not work if provided product doesn't have a foreign key in every table */
     public MobileDetailsResponse getMobileDetails(MobileDetailsRequest request) {
         Products product = entityManager.find(Products.class,request.getId());
         Display display = product.getDisplayByDisplayId();
@@ -58,8 +58,8 @@ public class MobileService {
 
 
     public FilteredMobileListResponse getFilteredMobileList(FilteredMobileListRequest request) {
-        Query query = entityManager.createQuery("select p from Products p where (:name is null or p.name = :name)");
-        query.setParameter("name", request.getName());
+        Query query = entityManager.createQuery("select p from Products p where (:name is null or p.name like concat('%', :name, '%'))");
+        query.setParameter("name", request.getSearchBarText());
         List<Products> resultList = (List<Products>) query.getResultList();
 
         ArrayList<FilteredMobileListResponse.ProductDto> productDtos = new ArrayList<>();

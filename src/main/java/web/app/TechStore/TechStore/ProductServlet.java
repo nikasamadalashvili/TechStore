@@ -28,7 +28,9 @@ public class ProductServlet extends HttpServlet {
         //FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest("xiaomi"));
         //MobileDetailsResponse responseResult = mobileService.getMobileDetails(new MobileDetailsRequest(1L));
         // Hello
-        String a = mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getFingerprint();
+        //String a = mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getFingerprint();
+        FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest("aom"));
+        String a = responseRes.getFilteredProducts().toString();
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h2>" + a + "<h2>");

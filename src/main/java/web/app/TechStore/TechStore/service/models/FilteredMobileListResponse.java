@@ -13,7 +13,7 @@ public class FilteredMobileListResponse {
         return filteredProducts;
     }
 
-
+    //missing price and photo
     public static class ProductDto {
         private long productId;
         private String name;

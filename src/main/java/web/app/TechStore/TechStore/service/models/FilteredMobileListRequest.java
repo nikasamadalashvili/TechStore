@@ -1,16 +1,17 @@
 package web.app.TechStore.TechStore.service.models;
 
 public class FilteredMobileListRequest {
-    private String name;
-    private Boolean isAsus;
-    private Double from;
-    private Double to;
+    private String searchBarText;
+    //private Boolean isAsus;
+    private Double priceFrom;
+    private Double priceTo;
 
-    public FilteredMobileListRequest(String name) {
-        this.name = name;
+
+    public FilteredMobileListRequest(String searchBarText) {
+        this.searchBarText = searchBarText;
     }
 
-    public String getName() {
-        return name;
+    public String getSearchBarText() {
+        return searchBarText;
     }
 }
