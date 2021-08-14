@@ -8,6 +8,7 @@ import web.app.TechStore.TechStore.service.models.MobileDetailsRequest;
 import web.app.TechStore.TechStore.service.models.MobileDetailsResponse;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "helloServlet", value = "/product-servlet")
 public class ProductServlet extends HttpServlet {
-
+     // garbage testing code
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getServletContext();
         response.setContentType("text/html");
@@ -29,7 +30,37 @@ public class ProductServlet extends HttpServlet {
         //MobileDetailsResponse responseResult = mobileService.getMobileDetails(new MobileDetailsRequest(1L));
         // Hello
         //String a = mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getFingerprint();
-        FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest("aom"));
+        List<String> brands = new ArrayList<>();
+        List<String> opSyss = new ArrayList<>();
+        List<Integer> scrSizes = new ArrayList<>();
+        List<String> scrResos = new ArrayList<>();
+        List<String> rams = new ArrayList<>();
+        List<String> internalMems = new ArrayList<>();
+        List <String> memCardSupports = new ArrayList<>();
+        List<Integer> numberOfCameras = new ArrayList<>();
+        List<String> mainCameraMps = new ArrayList<>();
+        List<String> secondCameraMps = new ArrayList<>();
+        List<String> typeOfProcessors = new ArrayList<>();
+        List<Integer> numberOfCoress = new ArrayList<>();
+        List<String> waterResistants = new ArrayList<>();
+        List<String> dualSims = new ArrayList<>();
+        List<String> ltes = new ArrayList<>();
+        List<String> lteAs = new ArrayList<>();
+        List<String> fiveGs = new ArrayList<>();
+        List<String> nfcs = new ArrayList<>();
+        List<String> colors = new ArrayList<>();
+        double pricefrom = 10;
+        double priceTo = 19;
+        scrSizes.add(4);
+        scrSizes.add(8);
+        //opSyss.add("ios");
+        //opSyss.add("win10");
+        //brands.add("Nokia");
+        //brands.add("apple");
+        FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest(
+                "", brands, opSyss, scrSizes, scrResos, rams, internalMems, memCardSupports,numberOfCameras,
+                mainCameraMps, secondCameraMps, typeOfProcessors, numberOfCoress, waterResistants, dualSims, ltes,
+                lteAs, fiveGs, nfcs, colors, pricefrom, priceTo));
         String a = responseRes.getFilteredProducts().toString();
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
