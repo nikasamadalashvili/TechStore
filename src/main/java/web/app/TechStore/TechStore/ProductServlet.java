@@ -61,7 +61,7 @@ public class ProductServlet extends HttpServlet {
                 lteAs, fiveGs, nfcs, colors, pricefrom, priceTo));
         String a = responseRes.getFilteredProducts().toString();
 
-        /*AddProductResponse responseRes = mobileService.addProduct(new AddProductRequest("a", "a", "a",
+        AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("a", "a", "a",
         "a", null, 123, 19,50.0, "kkkkkkk",9, "a", null, "a", 5, null,
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a","a","a",
@@ -75,7 +75,7 @@ public class ProductServlet extends HttpServlet {
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a"));
 
-        EditProductResponse resp = mobileService.editProduct(new EditProductRequest(127,"k", "alo", "a",
+        /*EditProductResponse resp = mobileService.editProduct(new EditProductRequest(127,"k", "alo", "a",
                 "a", null, 7,5,111.0,"kbva", 7, "a", null, "a", 5, null,
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a","a","a",
@@ -92,7 +92,7 @@ public class ProductServlet extends HttpServlet {
         //boolean a = responseRes.isAddedSuccesfully();
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h2>" + a + "<h2>");
+        out.println("<h2>" + responseResu.getProductId() + "<h2>");
         out.println("</body></html>");
     }
 

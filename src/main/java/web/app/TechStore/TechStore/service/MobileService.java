@@ -205,7 +205,7 @@ public class MobileService {
         entityManager.persist(product);
         entityManager.getTransaction().commit();
 
-        return new AddProductResponse(true);
+        return new AddProductResponse(true, product.getProductId());
     }
 
     public EditProductResponse editProduct(EditProductRequest request){
