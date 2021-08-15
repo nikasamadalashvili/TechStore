@@ -10,4 +10,6 @@ public class UserService {
     public UserService(MobileService service, EntityManager entityManager) {
         this.service =  service;
     }
+
+
 }
