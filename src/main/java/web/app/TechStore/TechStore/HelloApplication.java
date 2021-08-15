@@ -1,4 +1,4 @@
-package webapp.techstore;
+package web.app.TechStore.TechStore;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
