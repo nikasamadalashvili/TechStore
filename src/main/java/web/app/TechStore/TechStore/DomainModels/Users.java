@@ -16,6 +16,7 @@ public class Users {
 
     @Id
     @Column(name = "userID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getUserId() {
         return userId;
     }

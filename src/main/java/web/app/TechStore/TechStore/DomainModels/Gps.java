@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.DomainModels;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +11,20 @@ public class Gps {
     private String bds;
     private String glonass;
 
+    public Gps(String aGps, String galileo, String bds, String glonass) {
+        this.aGps = aGps;
+        this.galileo = galileo;
+        this.bds = bds;
+        this.glonass = glonass;
+    }
+
+    public Gps() {
+
+    }
+
     @Id
     @Column(name = "gpsID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getGpsId() {
         return gpsId;
     }
