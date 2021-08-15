@@ -75,6 +75,14 @@
 <div class="form-floating">
     <input type="text" class="form-control" id="to">
 </div>
+
+<div style="height: 300px; width: 200px;" >
+    <form action="/product-servlet" method="post" enctype="multipart/form-data">
+        <input type="file" name="adsfsfsf">
+        <input type="text" name="asdf">
+        <button type="submit">submity</button>
+    </form>
+</div>
 <script type="text/javascript">
     window.onload = () => {
         let startBut = document.getElementById('start');

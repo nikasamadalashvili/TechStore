@@ -1,5 +1,14 @@
 package web.app.TechStore.TechStore;
 
+import lombok.SneakyThrows;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tika.mime.MimeType;
+import org.apache.tika.mime.MimeTypeException;
+import org.apache.tika.mime.MimeTypes;
+import org.hibernate.id.GUIDGenerator;
 import web.app.TechStore.TechStore.DomainModels.Gps;
 import web.app.TechStore.TechStore.service.MobileService;
 import web.app.TechStore.TechStore.service.models.*;
@@ -7,8 +16,10 @@ import web.app.TechStore.TechStore.service.models.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.mail.internet.ContentType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -94,6 +105,29 @@ public class ProductServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h2>" + responseResu.getProductId() + "<h2>");
         out.println("</body></html>");
+    }
+
+    @SneakyThrows
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        String appPath = "/home/nika/Desktop/TechStore/src/main/webapp/images/";
+        // constructs path of the directory to save uploaded file
+        String savePath = appPath + File.separator;
+        FileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.parseRequest(request).stream()
+                .filter(o -> !((FileItem)o).isFormField())
+                .forEach(o -> {
+                    FileItem item = (FileItem) o;
+                    try {
+                        MimeType mimeType = MimeTypes.getDefaultMimeTypes().forName(item.getContentType());
+                        File newImagePath = new File(appPath + UUID.randomUUID() + mimeType.getExtension());
+                        item.write(newImagePath);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
     }
 
     public void destroy() {
