@@ -201,4 +201,145 @@ public class MobileService {
 
         return new AddProductResponse(true);
     }
+
+    public EditProductResponse editProduct(EditProductRequest request){
+        long prod_id = request.getProductId();
+        Products product = entityManager.find(Products.class, prod_id);
+        Display display = product.getDisplayByDisplayId();
+        GeneralInfo genInfo = product.getGeneralInfoByGeneralId();
+        Gps gps = product.getGpsByGpsId();
+        Camera cam = product.getCameraByCameraId();
+        Processor proc = product.getProcessorByProcessorId();
+        Sensors sens = product.getSensorsBySensorsId();
+        Memory mem = product.getMemoryByMemoryId();
+        AdditionalSpecs addSpc = product.getAdditionalSpecsBySpecsId();
+
+        entityManager.getTransaction().begin();
+
+        product.setBrand(request.getBrand());
+        product.setBuild(request.getBuild());
+        product.setName(request.getName());
+        product.setModelName(request.getModelName());
+        product.setSeries(request.getSeries());
+
+        display.setDolbyVision(request.getDolbyVision());
+        display.setBrightness(request.getBrightness());
+        display.setPpi(request.getPpi());
+        display.setScreenFormat(request.getScreenFormat());
+        display.setScreenPanelType(request.getScreenPanelType());
+        display.setNumberOfColors(request.getNumberOfColors());
+        display.setScreenSize(request.getScreenSize());
+        display.setScreenProtection(request.getScreenProtection());
+        display.setTrueTone(request.getTrueTone());
+        display.setScreenResolution(request.getScreenResolution());
+
+        genInfo.setDualSim(request.getDualSim());
+        genInfo.setDualStandby(request.getDualStandby());
+        genInfo.setFiveG(request.getFiveG());
+        genInfo.setLte(request.getLte());
+        genInfo.setLteA(request.getLteA());
+        genInfo.setSimType(request.getSimType());
+        genInfo.setThreeG(request.getThreeG());
+        genInfo.setTwoG(request.getTwoG());
+
+        gps.setaGps(request.getaGps());
+        gps.setBds(request.getBds());
+        gps.setGalileo(request.getGalileo());
+        gps.setGlonass(request.getGlonass());
+
+        cam.setAperture(request.getAperture());
+        cam.setAutofocus(request.getAutofocus());
+        cam.setForthCameraMp(request.getForthCameraMp());
+        cam.setHdr(request.getHdr());
+        cam.setLighting(request.getLighting());
+        cam.setMainCameraMp(request.getMainCameraMp());
+        cam.setNumberOfCamera(request.getNumberOfCamera());
+        cam.setPanorama(request.getPanorama());
+        cam.setSecondCameraMp(request.getSecondCameraMp());
+        cam.setSelfieAutofocus(request.getSelfieAutofocus());
+        cam.setSelfieCamera(request.getSelfieCamera());
+        cam.setSelfieHdr(request.getSelfieHdr());
+        cam.setSelfieVideoResolution(request.getSelfieVideoResolution());
+        cam.setThirdCameraMp(request.getThirdCameraMp());
+        cam.setVideoResolution(request.getVideoResolution());
+
+        proc.setGraphicProcessor(request.getGraphicProcessor());
+        proc.setLithography(request.getLithography());
+        proc.setManufacturer(request.getManufacturer());
+        proc.setModelOfProcessor(request.getModelOfProcessor());
+        proc.setNumberOfCores(request.getNumberOfCores());
+        proc.setTypeOfProcessor(request.getTypeOfProcessor());
+
+        sens.setAcceleremeter(request.getAcceleremeter());
+        sens.setCompass(request.getCompass());
+        sens.setFingerprint(request.getFingerprint());
+        sens.setGyroscope(request.getGyroscope());
+        sens.setProximity(request.getProximity());
+
+        mem.setInternalMemory(request.getInternalMemory());
+        mem.setMemoryCardMaximumSize(request.getMemoryCardMaximumSize());
+        mem.setMemoryCardSupport(request.getMemoryCardSupport());
+        mem.setRam(request.getRam());
+        mem.setTypeOfMemoryCard(request.getTypeOfMemoryCard());
+
+        addSpc.setAdapter(request.getAdapter());
+        addSpc.setAnt(request.getAnt());
+        addSpc.setAudioJack(request.getAudioJack());
+        addSpc.setBluetooth(request.getBluetooth());
+        addSpc.setColor(request.getColor());
+        addSpc.setBatteryDescription(request.getBatteryDescription());
+        addSpc.setCableIncluded(request.getCableIncluded());
+        addSpc.setDimensions(request.getDimensions());
+        addSpc.setFastCharging(request.getFastCharging());
+        addSpc.setFmRatioSupport(request.getFmRatioSupport());
+        addSpc.setHeadphones(request.getHeadphones());
+        addSpc.setLightningCorrect(request.getLightningCorrect());
+        addSpc.setLoudspeaker(request.getLoudspeaker());
+        addSpc.setMicrophone(request.getMicrophone());
+        addSpc.setMusicPlaybackTime(request.getAdapter());
+        addSpc.setNfc(request.getNfc());
+        addSpc.setNumberOfSpeakers(request.getNumberOfSpeakers());
+        addSpc.setOperatingSystem(request.getOperatingSystem());
+        addSpc.setOperatingSystemVersion(request.getOperatingSystemVersion());
+        addSpc.setTypeOfBattery(request.getTypeOfBattery());
+        addSpc.setUpgradable(request.getUpgradable());
+        addSpc.setUsbTypeC(request.getUsbTypeC());
+        addSpc.setWarranty(request.getWarranty());
+        addSpc.setWaterResistant(request.getWaterResistant());
+        addSpc.setWaterResistantDepth(request.getWaterResistantDepth());
+        addSpc.setWeight(request.getWeight());
+        addSpc.setWifiDirect(request.getWifiDirect());
+        addSpc.setWirelessCharging(request.getWirelessCharging());
+
+        entityManager.getTransaction().commit();
+
+        return new EditProductResponse(true);
+    }
+
+    public DeleteProductResponse deleteProduct(DeleteProductRequest request){
+        long prod_id = request.getProductId();
+        Products product = entityManager.find(Products.class, prod_id);
+        Display display = product.getDisplayByDisplayId();
+        GeneralInfo genInfo = product.getGeneralInfoByGeneralId();
+        Gps gps = product.getGpsByGpsId();
+        Camera cam = product.getCameraByCameraId();
+        Processor proc = product.getProcessorByProcessorId();
+        Sensors sens = product.getSensorsBySensorsId();
+        Memory mem = product.getMemoryByMemoryId();
+        AdditionalSpecs addSpc = product.getAdditionalSpecsBySpecsId();
+
+        entityManager.getTransaction().begin();
+        entityManager.remove(display);
+        entityManager.remove(genInfo);
+        entityManager.remove(gps);
+        entityManager.remove(cam);
+        entityManager.remove(proc);
+        entityManager.remove(sens);
+        entityManager.remove(mem);
+        entityManager.remove(addSpc);
+        entityManager.remove(product);
+        entityManager.getTransaction().commit();
+
+        return new DeleteProductResponse(true);
+    }
 }

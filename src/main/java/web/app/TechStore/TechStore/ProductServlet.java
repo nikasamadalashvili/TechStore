@@ -61,7 +61,7 @@ public class ProductServlet extends HttpServlet {
         //String a = responseRes.getFilteredProducts().toString();
 
         AddProductResponse responseRes = mobileService.addProduct(new AddProductRequest("a", "a", "a",
-        "a", "a", 5, "a", 5, "a", 5, "a",
+        "a", null, 5, "a", null, "a", 5, null,
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a","a","a",
                 "a","a","a", "a","a","a",
@@ -73,6 +73,21 @@ public class ProductServlet extends HttpServlet {
                 "a","a","a","a","a","a",
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a"));
+
+        EditProductResponse resp = mobileService.editProduct(new EditProductRequest(37,"k", "alo", "a",
+                "a", null, 7, "a", null, "a", 5, null,
+                "a","a","a","a","a","a","a",
+                "a","a","a","a","a","a","a","a",
+                "a","a","a", "a","a","a",
+                "a","a","a","a","a","a",
+                "a","a","a","a","a","a","a","a","a",
+                "a","a","a", "a","a","a","a","a","a",
+                "a","a","a","a","a",
+                "a","a",5, "a","a", 5,
+                "a","a","a","a","a","a",
+                "a","a","a","a","a","a","a",
+                "a","a","a","a","a","a"));
+        DeleteProductResponse deleteResp = mobileService.deleteProduct(new DeleteProductRequest(55));
         boolean a = responseRes.isAddedSuccesfully();
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
