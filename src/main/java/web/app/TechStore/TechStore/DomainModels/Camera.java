@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.DomainModels;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -27,6 +24,7 @@ public class Camera {
 
     @Id
     @Column(name = "cameraID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getCameraId() {
         return cameraId;
     }

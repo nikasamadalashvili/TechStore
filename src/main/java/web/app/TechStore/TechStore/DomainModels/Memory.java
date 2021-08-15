@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.DomainModels;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +14,7 @@ public class Memory {
 
     @Id
     @Column(name = "memoryID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getMemoryId() {
         return memoryId;
     }

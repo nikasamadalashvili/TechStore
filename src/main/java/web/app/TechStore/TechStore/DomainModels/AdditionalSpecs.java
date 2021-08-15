@@ -38,6 +38,7 @@ public class AdditionalSpecs {
 
     @Id
     @Column(name = "specsID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getSpecsId() {
         return specsId;
     }

@@ -18,6 +18,7 @@ public class GeneralInfo {
 
     @Id
     @Column(name = "generalID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getGeneralId() {
         return generalId;
     }

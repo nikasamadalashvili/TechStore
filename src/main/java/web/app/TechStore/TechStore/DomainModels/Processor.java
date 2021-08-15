@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.DomainModels;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +15,7 @@ public class Processor {
 
     @Id
     @Column(name = "processorID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getProcessorId() {
         return processorId;
     }

@@ -20,8 +20,11 @@ public class Products {
     private Gps gpsByGpsId;
     private AdditionalSpecs additionalSpecsBySpecsId;
 
+
+
     @Id
     @Column(name = "productID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getProductId() {
         return productId;
     }
@@ -172,4 +175,5 @@ public class Products {
     public void setAdditionalSpecsBySpecsId(AdditionalSpecs additionalSpecsBySpecsId) {
         this.additionalSpecsBySpecsId = additionalSpecsBySpecsId;
     }
+
 }
