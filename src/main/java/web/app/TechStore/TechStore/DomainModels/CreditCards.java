@@ -10,6 +10,17 @@ public class CreditCards {
     private String cvv;
     private Users userByUserId;
 
+    public CreditCards(long creditCardId, String cardNumber, String expiryDate, String cvv, Users userByUserId) {
+        this.creditCardId = creditCardId;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
+        this.userByUserId = userByUserId;
+    }
+
+    public CreditCards() {
+    }
+
     @Id
     @Column(name = "creditCardId", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -10,6 +10,17 @@ public class ShoppingCartObjects {
     private Double totalCostImmutable;
     private Integer totalQuantityImmutable;
 
+    public ShoppingCartObjects(long shoppingCartObjID, Users userByUserId, Products productByProductId,
+                               Double totalCostImmutable, Integer totalQuantityImmutable) {
+        this.shoppingCartObjID = shoppingCartObjID;
+        this.userByUserId = userByUserId;
+        this.productByProductId = productByProductId;
+        this.totalCostImmutable = totalCostImmutable;
+        this.totalQuantityImmutable = totalQuantityImmutable;
+    }
+
+    public ShoppingCartObjects() {
+    }
 
     @Id
     @Column(name = "shoppingCartObjID", nullable = false)
