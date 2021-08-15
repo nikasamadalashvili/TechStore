@@ -1,8 +1,11 @@
 package web.app.TechStore.TechStore.DomainModels;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Builder
 @Entity
 public class Users {
     private long userId;
@@ -13,6 +16,20 @@ public class Users {
     private String password;
     private String image;
     private Roles rolesByRoleId;
+
+    public Users() {
+    }
+
+    public Users(long userId, String firstName, String lastName, String email, String username, String password, String image, Roles rolesByRoleId) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.image = image;
+        this.rolesByRoleId = rolesByRoleId;
+    }
 
     @Id
     @Column(name = "userID", nullable = false)
