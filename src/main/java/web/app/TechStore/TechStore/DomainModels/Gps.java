@@ -11,6 +11,17 @@ public class Gps {
     private String bds;
     private String glonass;
 
+    public Gps(String aGps, String galileo, String bds, String glonass) {
+        this.aGps = aGps;
+        this.galileo = galileo;
+        this.bds = bds;
+        this.glonass = glonass;
+    }
+
+    public Gps() {
+
+    }
+
     @Id
     @Column(name = "gpsID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

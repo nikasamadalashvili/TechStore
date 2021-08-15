@@ -22,6 +22,31 @@ public class Camera {
     private String selfieAutofocus;
     private String selfieHdr;
 
+    public Camera(Integer numberOfCamera, String mainCameraMp, String secondCameraMp, String thirdCameraMp,
+                  String forthCameraMp, String videoResolution, String autofocus, String lighting, String aperture,
+                  String hdr, String panorama, String selfieCamera, String selfieVideoResolution,
+                  String selfieAutofocus, String selfieHdr) {
+        this.numberOfCamera = numberOfCamera;
+        this.mainCameraMp = mainCameraMp;
+        this.secondCameraMp = secondCameraMp;
+        this.thirdCameraMp = thirdCameraMp;
+        this.forthCameraMp = forthCameraMp;
+        this.videoResolution = videoResolution;
+        this.autofocus = autofocus;
+        this.lighting = lighting;
+        this.aperture = aperture;
+        this.hdr = hdr;
+        this.panorama = panorama;
+        this.selfieCamera = selfieCamera;
+        this.selfieVideoResolution = selfieVideoResolution;
+        this.selfieAutofocus = selfieAutofocus;
+        this.selfieHdr = selfieHdr;
+    }
+
+    public Camera() {
+
+    }
+
     @Id
     @Column(name = "cameraID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

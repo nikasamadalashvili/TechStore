@@ -16,6 +16,22 @@ public class GeneralInfo {
     private String dualStandby;
     private String simType;
 
+    public GeneralInfo(String twoG, String threeG, String lte, String lteA, String fiveG, String dualSim,
+                       String dualStandby, String simType) {
+        this.twoG = twoG;
+        this.threeG = threeG;
+        this.lte = lte;
+        this.lteA = lteA;
+        this.fiveG = fiveG;
+        this.dualSim = dualSim;
+        this.dualStandby = dualStandby;
+        this.simType = simType;
+    }
+
+    public GeneralInfo() {
+
+    }
+
     @Id
     @Column(name = "generalID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -12,6 +12,18 @@ public class Sensors {
     private String gyroscope;
     private String proximity;
 
+    public Sensors(String fingerprint, String acceleremeter, String compass, String gyroscope, String proximity) {
+        this.fingerprint = fingerprint;
+        this.acceleremeter = acceleremeter;
+        this.compass = compass;
+        this.gyroscope = gyroscope;
+        this.proximity = proximity;
+    }
+
+    public Sensors() {
+
+    }
+
     @Id
     @Column(name = "sensorsID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

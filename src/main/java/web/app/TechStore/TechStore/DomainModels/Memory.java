@@ -12,6 +12,19 @@ public class Memory {
     private String memoryCardMaximumSize;
     private String typeOfMemoryCard;
 
+    public Memory(String ram, String internalMemory, String memoryCardSupport, String memoryCardMaximumSize, String typeOfMemoryCard) {
+        this.ram = ram;
+        this.internalMemory = internalMemory;
+        this.memoryCardSupport = memoryCardSupport;
+        this.memoryCardMaximumSize = memoryCardMaximumSize;
+        this.typeOfMemoryCard = typeOfMemoryCard;
+    }
+
+    public Memory() {
+
+    }
+
+
     @Id
     @Column(name = "memoryID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
