@@ -61,8 +61,44 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
 </main>
-
-
-
+<textarea title="username" id="username" rows="4" cols="50">
+</textarea>
+<textarea id="message" rows="4" cols="50">
+</textarea>
+<button id="start">start</button>
+<button id="send">send</button>
 </body>
+
+<label>received Text Area</label>
+<textarea id="received" rows="4" cols="50">
+</textarea>
+<div class="form-floating">
+    <input type="text" class="form-control" id="to">
+</div>
+<script type="text/javascript">
+    window.onload = () => {
+        let startBut = document.getElementById('start');
+        startBut.onclick = ev => {
+            startBut.disabled = true;
+            let username = document.getElementById('username').value
+            const exampleSocket = new WebSocket("ws://localhost:8080/CustomChat?username=" + username);
+            document.getElementById('send').onclick = ev => {
+                let text = document.getElementById('message');
+                let messageObj = {
+                    from: username,
+                    to: document.getElementById('to').value,
+                    message: text.value,
+                    sender: 'gela',
+                    //sentDate: Date.now()
+                };
+                exampleSocket.send(JSON.stringify(messageObj));
+            }
+
+            exampleSocket.onmessage = ev => {
+                let messageObj = JSON.parse(ev.data);
+                document.getElementById('received').value += messageObj.message;
+            }
+        }
+    }
+</script>
 </html>

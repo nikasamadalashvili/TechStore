@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.DomainModels;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -16,8 +13,23 @@ public class Processor {
     private String graphicProcessor;
     private String lithography;
 
+    public Processor(String manufacturer, String typeOfProcessor, String modelOfProcessor, Integer numberOfCores,
+                     String graphicProcessor, String lithography) {
+        this.manufacturer = manufacturer;
+        this.typeOfProcessor = typeOfProcessor;
+        this.modelOfProcessor = modelOfProcessor;
+        this.numberOfCores = numberOfCores;
+        this.graphicProcessor = graphicProcessor;
+        this.lithography = lithography;
+    }
+
+    public Processor() {
+
+    }
+
     @Id
     @Column(name = "processorID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getProcessorId() {
         return processorId;
     }

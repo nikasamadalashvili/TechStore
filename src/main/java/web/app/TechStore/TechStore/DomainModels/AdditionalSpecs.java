@@ -36,8 +36,50 @@ public class AdditionalSpecs {
     private String headphones;
     private String warranty;
 
+    public AdditionalSpecs(String fmRatioSupport, String numberOfSpeakers, String loudspeaker, String microphone,
+                           String usbTypeC, String lightningCorrect, String audioJack, String bluetooth, String nfc,
+                           String wifiDirect, String ant, String fastCharging, String wirelessCharging,
+                           String batteryDescription, String musicPlaybackTime, String typeOfBattery,
+                           String waterResistant, String waterResistantDepth, String operatingSystem,
+                           String operatingSystemVersion, String upgradable, String color, String dimensions,
+                           String weight, String adapter, String cableIncluded, String headphones, String warranty) {
+        this.fmRatioSupport = fmRatioSupport;
+        this.numberOfSpeakers = numberOfSpeakers;
+        this.loudspeaker = loudspeaker;
+        this.microphone = microphone;
+        this.usbTypeC = usbTypeC;
+        this.lightningCorrect = lightningCorrect;
+        this.audioJack = audioJack;
+        this.bluetooth = bluetooth;
+        this.nfc = nfc;
+        this.wifiDirect = wifiDirect;
+        this.ant = ant;
+        this.fastCharging = fastCharging;
+        this.wirelessCharging = wirelessCharging;
+        this.batteryDescription = batteryDescription;
+        this.musicPlaybackTime = musicPlaybackTime;
+        this.typeOfBattery = typeOfBattery;
+        this.waterResistant = waterResistant;
+        this.waterResistantDepth = waterResistantDepth;
+        this.operatingSystem = operatingSystem;
+        this.operatingSystemVersion = operatingSystemVersion;
+        this.upgradable = upgradable;
+        this.color = color;
+        this.dimensions = dimensions;
+        this.weight = weight;
+        this.adapter = adapter;
+        this.cableIncluded = cableIncluded;
+        this.headphones = headphones;
+        this.warranty = warranty;
+    }
+
+    public AdditionalSpecs() {
+
+    }
+
     @Id
     @Column(name = "specsID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getSpecsId() {
         return specsId;
     }

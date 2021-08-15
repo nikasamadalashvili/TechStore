@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.DomainModels;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -15,8 +12,22 @@ public class Memory {
     private String memoryCardMaximumSize;
     private String typeOfMemoryCard;
 
+    public Memory(String ram, String internalMemory, String memoryCardSupport, String memoryCardMaximumSize, String typeOfMemoryCard) {
+        this.ram = ram;
+        this.internalMemory = internalMemory;
+        this.memoryCardSupport = memoryCardSupport;
+        this.memoryCardMaximumSize = memoryCardMaximumSize;
+        this.typeOfMemoryCard = typeOfMemoryCard;
+    }
+
+    public Memory() {
+
+    }
+
+
     @Id
     @Column(name = "memoryID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getMemoryId() {
         return memoryId;
     }
