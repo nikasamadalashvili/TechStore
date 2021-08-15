@@ -129,7 +129,76 @@ public class MobileService {
         return new FilteredMobileListResponse(productDtos);
     }
 
-    //public AddProductResponse AddProduct(AddProductRequest request){
+    public AddProductResponse addProduct(AddProductRequest request){
+        Display display = new Display(request.getScreenSize(), request.getScreenResolution(), request.getPpi(),
+                request.getScreenPanelType(), request.getNumberOfColors(), request.getScreenFormat(),
+                request.getTrueTone(), request.getBrightness(), request.getScreenProtection(),
+                request.getDolbyVision());
+        entityManager.getTransaction().begin();
+        entityManager.persist(display);
+        entityManager.getTransaction().commit();
 
-    //}
+        Sensors sensor = new Sensors(request.getFingerprint(), request.getAcceleremeter(), request.getCompass(),
+                request.getGyroscope(), request.getProximity());
+        entityManager.getTransaction().begin();
+        entityManager.persist(sensor);
+        entityManager.getTransaction().commit();
+
+        Camera camera = new Camera(request.getNumberOfCamera(), request.getMainCameraMp(), request.getSecondCameraMp(),
+                request.getThirdCameraMp(), request.getForthCameraMp(), request.getVideoResolution(),
+                request.getAutofocus(), request.getLighting(), request.getAperture(), request.getHdr(),
+                request.getPanorama(), request.getSelfieCamera(), request.getSelfieVideoResolution(),
+                request.getSelfieAutofocus(), request.getSelfieHdr());
+        entityManager.getTransaction().begin();
+        entityManager.persist(camera);
+        entityManager.getTransaction().commit();
+
+        AdditionalSpecs additionalSpecs = new AdditionalSpecs(request.getFmRatioSupport(),
+                request.getNumberOfSpeakers(), request.getLoudspeaker(), request.getMicrophone(), request.getUsbTypeC(),
+                request.getLightningCorrect(), request.getAudioJack(), request.getBluetooth(), request.getNfc(),
+                request.getWifiDirect(), request.getAnt(), request.getFastCharging(), request.getWirelessCharging(),
+                request.getBatteryDescription(), request.getMusicPlaybackTime(), request.getTypeOfBattery(),
+                request.getWaterResistant(), request.getWaterResistantDepth(), request.getOperatingSystem(),
+                request.getOperatingSystemVersion(), request.getUpgradable(), request.getColor(), request.getDimensions(),
+                request.getWeight(), request.getAdapter(), request.getCableIncluded(), request.getHeadphones(),
+                request.getWarranty());
+        entityManager.getTransaction().begin();
+        entityManager.persist(additionalSpecs);
+        entityManager.getTransaction().commit();
+
+        GeneralInfo generalInfo = new GeneralInfo(request.getTwoG(), request.getThreeG(), request.getLte(),
+                request.getLteA(), request.getFiveG(), request.getDualSim(), request.getDualStandby(),
+                request.getSimType());
+        entityManager.getTransaction().begin();
+        entityManager.persist(generalInfo);
+        entityManager.getTransaction().commit();
+
+        Gps gps = new Gps(request.getaGps(), request.getGalileo(), request.getBds(), request.getGlonass());
+        entityManager.getTransaction().begin();
+        entityManager.persist(gps);
+        entityManager.getTransaction().commit();
+
+        Processor processor = new Processor(request.getManufacturer(), request.getTypeOfProcessor(),
+                request.getModelOfProcessor(), request.getNumberOfCores(), request.getGraphicProcessor(),
+                request.getLithography());
+        entityManager.getTransaction().begin();
+        entityManager.persist(processor);
+        entityManager.getTransaction().commit();
+
+        Memory memory = new Memory(request.getRam(), request.getInternalMemory(), request.getMemoryCardSupport(),
+                request.getMemoryCardMaximumSize(), request.getTypeOfMemoryCard());
+        entityManager.getTransaction().begin();
+        entityManager.persist(memory);
+        entityManager.getTransaction().commit();
+
+        Products product = new Products(request.getName(), request.getModelName(), request.getBrand(),
+                request.getSeries(), request.getBuild(), generalInfo, display, camera, processor, memory,
+                sensor, gps, additionalSpecs);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(product);
+        entityManager.getTransaction().commit();
+
+        return new AddProductResponse(true);
+    }
 }
