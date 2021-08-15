@@ -3,10 +3,7 @@ package web.app.TechStore.TechStore.service;
 
 
 import web.app.TechStore.TechStore.DomainModels.*;
-import web.app.TechStore.TechStore.service.models.FilteredMobileListRequest;
-import web.app.TechStore.TechStore.service.models.FilteredMobileListResponse;
-import web.app.TechStore.TechStore.service.models.MobileDetailsRequest;
-import web.app.TechStore.TechStore.service.models.MobileDetailsResponse;
+import web.app.TechStore.TechStore.service.models.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -131,4 +128,8 @@ public class MobileService {
 
         return new FilteredMobileListResponse(productDtos);
     }
+
+    //public AddProductResponse AddProduct(AddProductRequest request){
+
+    //}
 }

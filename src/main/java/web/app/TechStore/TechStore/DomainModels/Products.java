@@ -20,6 +20,30 @@ public class Products {
     private Gps gpsByGpsId;
     private AdditionalSpecs additionalSpecsBySpecsId;
 
+    public Products(String name, String modelName, String brand, String series, String build,
+                    GeneralInfo generalInfoByGeneralId, Display displayByDisplayId, Camera cameraByCameraId,
+                    Processor processorByProcessorId, Memory memoryByMemoryId, Sensors sensorsBySensorsId,
+                    Gps gpsByGpsId, AdditionalSpecs additionalSpecsBySpecsId) {
+        this.name = name;
+        this.modelName = modelName;
+        this.brand = brand;
+        this.series = series;
+        this.build = build;
+        this.generalInfoByGeneralId = generalInfoByGeneralId;
+        this.displayByDisplayId = displayByDisplayId;
+        this.cameraByCameraId = cameraByCameraId;
+        this.processorByProcessorId = processorByProcessorId;
+        this.memoryByMemoryId = memoryByMemoryId;
+        this.sensorsBySensorsId = sensorsBySensorsId;
+        this.gpsByGpsId = gpsByGpsId;
+        this.additionalSpecsBySpecsId = additionalSpecsBySpecsId;
+    }
+
+    public Products() {
+
+    }
+
+
     @Id
     @Column(name = "productID", nullable = false)
     public long getProductId() {

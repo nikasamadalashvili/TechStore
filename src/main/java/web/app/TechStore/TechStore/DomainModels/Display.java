@@ -20,6 +20,25 @@ public class Display {
     private String screenProtection;
     private String dolbyVision;
 
+    public Display(Integer screenSize, String screenResolution, Integer ppi, String screenPanelType,
+                   Integer numberOfColors, String screenFormat, String trueTone, String brightness,
+                   String screenProtection, String dolbyVision) {
+        this.screenSize = screenSize;
+        this.screenResolution = screenResolution;
+        this.ppi = ppi;
+        this.screenPanelType = screenPanelType;
+        this.numberOfColors = numberOfColors;
+        this.screenFormat = screenFormat;
+        this.trueTone = trueTone;
+        this.brightness = brightness;
+        this.screenProtection = screenProtection;
+        this.dolbyVision = dolbyVision;
+    }
+
+    public Display() {
+
+    }
+
     @Id
     @Column(name = "displayID", nullable = false)
     public long getDisplayId() {
