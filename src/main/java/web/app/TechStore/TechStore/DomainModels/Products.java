@@ -11,6 +11,10 @@ public class Products {
     private String brand;
     private String series;
     private String build;
+    private Integer availableQuantity;
+    private Integer reservedQuantity;
+    private Double price;
+    private String imageName;
     private GeneralInfo generalInfoByGeneralId;
     private Display displayByDisplayId;
     private Camera cameraByCameraId;
@@ -20,7 +24,8 @@ public class Products {
     private Gps gpsByGpsId;
     private AdditionalSpecs additionalSpecsBySpecsId;
 
-    public Products(String name, String modelName, String brand, String series, String build,
+    public Products(String name, String modelName, String brand, String series, String build, Integer availableQuantity,
+                    Integer reservedQuantity, Double price, String imageName,
                     GeneralInfo generalInfoByGeneralId, Display displayByDisplayId, Camera cameraByCameraId,
                     Processor processorByProcessorId, Memory memoryByMemoryId, Sensors sensorsBySensorsId,
                     Gps gpsByGpsId, AdditionalSpecs additionalSpecsBySpecsId) {
@@ -29,6 +34,10 @@ public class Products {
         this.brand = brand;
         this.series = series;
         this.build = build;
+        this.availableQuantity = availableQuantity;
+        this.reservedQuantity = reservedQuantity;
+        this.price = price;
+        this.imageName = imageName;
         this.generalInfoByGeneralId = generalInfoByGeneralId;
         this.displayByDisplayId = displayByDisplayId;
         this.cameraByCameraId = cameraByCameraId;
@@ -103,6 +112,47 @@ public class Products {
 
     public void setBuild(String build) {
         this.build = build;
+    }
+
+    @Basic
+    @Column(name = "availableQuantity", nullable = true, length = 64)
+    public Integer getAvailableQuantity(){
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(Integer availableQuantity){
+        this.availableQuantity = availableQuantity;
+    }
+
+    @Basic
+    @Column(name = "reservedQuantity", nullable = true, length = 64)
+    public Integer getReservedQuantity() {
+        return reservedQuantity;
+    }
+
+    public void setReservedQuantity(Integer reservedQuantity) {
+        this.reservedQuantity = reservedQuantity;
+    }
+
+
+    @Basic
+    @Column(name = "price", nullable = true, length = 64)
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    @Basic
+    @Column(name = "imageName", nullable = true, length = 64)
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     @Override

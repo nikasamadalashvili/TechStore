@@ -29,7 +29,8 @@ public class MobileService {
         Memory mem = product.getMemoryByMemoryId();
         AdditionalSpecs addSpc = product.getAdditionalSpecsBySpecsId();
         return new MobileDetailsResponse(product.getProductId(),product.getName(),product.getModelName(),
-                product.getBrand(), product.getSeries(), product.getBuild(), display.getScreenSize(),
+                product.getBrand(), product.getSeries(), product.getBuild(),product.getAvailableQuantity(),
+                product.getReservedQuantity(), product.getPrice(), product.getImageName(), display.getScreenSize(),
                 display.getScreenResolution(), display.getPpi(), display.getScreenPanelType(),
                 display.getNumberOfColors(), display.getScreenFormat(), display.getTrueTone(),
                 display.getBrightness(), display.getScreenProtection(), display.getDolbyVision(),
@@ -59,6 +60,7 @@ public class MobileService {
         Query query = entityManager.createQuery
                 ("select p from Products p" +
                         " where ((:name is null or p.name like concat('%', :name, '%'))" +
+                        " and (:priceTo >= p.price and :priceFrom <= p.price)" +
                         " and (:brandsEmpty = true or p.brand in :brands)" +
                         " and (:operatingSystemsEmpty = true or p.additionalSpecsBySpecsId.operatingSystem in :operatingSystems)" +
                         " and (:screenSizeEmpty = true or p.displayByDisplayId.screenSize in :screenSizes)" +
@@ -117,13 +119,16 @@ public class MobileService {
         query.setParameter("nfssEmpty", request.getNfc().size() == 0);
         query.setParameter("colors", request.getColor());
         query.setParameter("colorsEmpty", request.getColor().size() == 0);
+        query.setParameter("priceFrom", request.getPriceFrom());
+        query.setParameter("priceTo", request.getPriceTo());
 
         List<Products> resultList = (List<Products>) query.getResultList();
 
         ArrayList<FilteredMobileListResponse.ProductDto> productDtos = new ArrayList<>();
 
         resultList.forEach(products -> {
-            productDtos.add(new FilteredMobileListResponse.ProductDto(products.getProductId(), products.getName()));
+            productDtos.add(new FilteredMobileListResponse.ProductDto(products.getProductId(), products.getName(),
+                    products.getPrice(), products.getImageName()));
         });
 
         return new FilteredMobileListResponse(productDtos);
@@ -192,8 +197,9 @@ public class MobileService {
         entityManager.getTransaction().commit();
 
         Products product = new Products(request.getName(), request.getModelName(), request.getBrand(),
-                request.getSeries(), request.getBuild(), generalInfo, display, camera, processor, memory,
-                sensor, gps, additionalSpecs);
+                request.getSeries(), request.getBuild(), request.getAvailableQuantity(), request.getReservedQuantity(),
+                request.getPrice(), request.getImageName(), generalInfo, display,
+                camera, processor, memory, sensor, gps, additionalSpecs);
 
         entityManager.getTransaction().begin();
         entityManager.persist(product);
@@ -221,6 +227,10 @@ public class MobileService {
         product.setName(request.getName());
         product.setModelName(request.getModelName());
         product.setSeries(request.getSeries());
+        product.setAvailableQuantity(request.getAvailableQuantity());
+        product.setPrice(request.getPrice());
+        product.setImageName(request.getImageName());
+        product.setReservedQuantity(request.getReservedQuantity());
 
         display.setDolbyVision(request.getDolbyVision());
         display.setBrightness(request.getBrightness());

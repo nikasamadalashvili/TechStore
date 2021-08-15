@@ -1,5 +1,7 @@
 package web.app.TechStore.TechStore.service.models;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 public class AddProductRequest {
     //product
     //private long productId;
@@ -8,6 +10,10 @@ public class AddProductRequest {
     private String brand;
     private String series;
     private String build;
+    private Integer availableQuantity;
+    private Integer reservedQuantity;
+    private Double price;
+    private String imageName;
 
     //Display
     private Integer screenSize;
@@ -106,7 +112,8 @@ public class AddProductRequest {
     private String gyroscope;
     private String proximity;
 
-    public AddProductRequest(String name, String modelName, String brand, String series, String build,
+    public AddProductRequest(String name, String modelName, String brand, String series, String build, Integer availableQuantity,
+                             Integer reservedQuantity, Double price, String imageName,
                              Integer screenSize, String screenResolution, Integer ppi, String screenPanelType,
                              Integer numberOfColors, String screenFormat, String trueTone, String brightness,
                              String screenProtection, String dolbyVision, String fmRatioSupport,
@@ -132,6 +139,10 @@ public class AddProductRequest {
         this.brand = brand;
         this.series = series;
         this.build = build;
+        this.availableQuantity = availableQuantity;
+        this.reservedQuantity = reservedQuantity;
+        this.price = price;
+        this.imageName = imageName;
         this.screenSize = screenSize;
         this.ppi = ppi;
         this.screenFormat = screenFormat;
@@ -213,6 +224,38 @@ public class AddProductRequest {
         this.numberOfCores = numberOfCores;
         this.lithography = lithography;
         this.graphicProcessor = graphicProcessor;
+    }
+
+    public Integer getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(Integer availableQuantity) {
+        this.availableQuantity = availableQuantity;
+    }
+
+    public Integer getReservedQuantity() {
+        return reservedQuantity;
+    }
+
+    public void setReservedQuantity(Integer reservedQuantity) {
+        this.reservedQuantity = reservedQuantity;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 
     public String getName() {

@@ -8,6 +8,10 @@ public class EditProductRequest {
     private String brand;
     private String series;
     private String build;
+    private Integer availableQuantity;
+    private Integer reservedQuantity;
+    private Double price;
+    private String imageName;
 
     //Display
     private Integer screenSize;
@@ -107,6 +111,7 @@ public class EditProductRequest {
     private String proximity;
 
     public EditProductRequest(long productId, String name, String modelName, String brand, String series, String build,
+                              Integer availableQuantity, Integer reservedQuantity,Double price,String imageName,
                               Integer screenSize, String screenResolution, Integer ppi, String screenPanelType,
                               Integer numberOfColors, String screenFormat, String trueTone, String brightness,
                               String screenProtection, String dolbyVision, String fmRatioSupport,
@@ -134,6 +139,10 @@ public class EditProductRequest {
         this.brand = brand;
         this.series = series;
         this.build = build;
+        this.availableQuantity = availableQuantity;
+        this.reservedQuantity = reservedQuantity;
+        this.price = price;
+        this.imageName = imageName;
         this.screenSize = screenSize;
         this.screenResolution = screenResolution;
         this.ppi = ppi;
@@ -239,6 +248,22 @@ public class EditProductRequest {
 
     public String getBuild() {
         return build;
+    }
+
+    public Integer getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public Integer getReservedQuantity() {
+        return reservedQuantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 
     public Integer getScreenSize() {

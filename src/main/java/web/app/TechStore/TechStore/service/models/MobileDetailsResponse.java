@@ -8,6 +8,10 @@ public class MobileDetailsResponse {
     private String brand;
     private String series;
     private String build;
+    private Integer availableQuantity;
+    private Integer reservedQuantity;
+    private Double price;
+    private String imageName;
 
     //Display
     private Integer screenSize;
@@ -107,6 +111,7 @@ public class MobileDetailsResponse {
     private String proximity;
 
     public MobileDetailsResponse(long productId, String name, String modelName, String brand, String series, String build,
+                                 Integer availableQuantity,Integer reservedQuantity,Double price,String imageName,
                                  Integer screenSize, String screenResolution, Integer ppi, String screenPanelType,
                                  Integer numberOfColors, String screenFormat, String trueTone, String brightness,
                                  String screenProtection, String dolbyVision, String fmRatioSupport,
@@ -133,6 +138,10 @@ public class MobileDetailsResponse {
         this.brand = brand;
         this.series = series;
         this.build = build;
+        this.availableQuantity = availableQuantity;
+        this.imageName = imageName;
+        this.price = price;
+        this.reservedQuantity = reservedQuantity;
         this.screenSize = screenSize;
         this.ppi = ppi;
         this.screenFormat = screenFormat;
@@ -238,6 +247,38 @@ public class MobileDetailsResponse {
 
     public void setBuild(String build) {
         this.build = build;
+    }
+
+    public Integer getAvailableQuantity() {
+        return availableQuantity;
+    }
+
+    public void setAvailableQuantity(Integer availableQuantity) {
+        this.availableQuantity = availableQuantity;
+    }
+
+    public Integer getReservedQuantity() {
+        return reservedQuantity;
+    }
+
+    public void setReservedQuantity(Integer reservedQuantity) {
+        this.reservedQuantity = reservedQuantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public Integer getScreenSize() {
