@@ -1,23 +1,18 @@
 package web.app.TechStore.TechStore.DomainModels;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class CreditCards {
     private long creditCardId;
     private String cardNumber;
-    private String expiryDate;
     private String cvv;
-    private Users userByUserId;
-
-    public CreditCards(String cardNumber, String expiryDate, String cvv, Users userByUserId) {
-        this.cardNumber = cardNumber;
-        this.expiryDate = expiryDate;
-        this.cvv = cvv;
-        this.userByUserId = userByUserId;
-    }
+    private String expiryDate;
+    private Long userId;
 
     public CreditCards() {
+
     }
 
     @Id
@@ -31,6 +26,13 @@ public class CreditCards {
         this.creditCardId = creditCardId;
     }
 
+    public CreditCards(String cardNumber, String cvv, String expiryDate, Long userId) {
+        this.cardNumber = cardNumber;
+        this.cvv = cvv;
+        this.expiryDate = expiryDate;
+        this.userId = userId;
+    }
+
     @Basic
     @Column(name = "cardNumber", nullable = false, length = 64)
     public String getCardNumber() {
@@ -39,6 +41,16 @@ public class CreditCards {
 
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    @Basic
+    @Column(name = "cvv", nullable = false, length = 64)
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
     }
 
     @Basic
@@ -52,23 +64,25 @@ public class CreditCards {
     }
 
     @Basic
-    @Column(name = "cvv", nullable = false, length = 64)
-    public String getCvv() {
-        return cvv;
+    @Column(name = "userID", nullable = true)
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-
-    @ManyToOne
-    @JoinColumn(name = "userID", referencedColumnName = "userID")
-    public Users getUserByUserId() {
-        return userByUserId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CreditCards that = (CreditCards) o;
+        return creditCardId == that.creditCardId && Objects.equals(cardNumber, that.cardNumber) && Objects.equals(cvv, that.cvv) && Objects.equals(expiryDate, that.expiryDate) && Objects.equals(userId, that.userId);
     }
 
-    public void setUserByUserId(Users userByUserId) {
-        this.userByUserId = userByUserId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(creditCardId, cardNumber, cvv, expiryDate, userId);
     }
 }
