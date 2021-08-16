@@ -1,10 +1,7 @@
 package web.app.TechStore.TechStore;
 
 import web.app.TechStore.TechStore.service.ShoppingCartService;
-import web.app.TechStore.TechStore.service.models.AddShoppingCartObjectRequest;
-import web.app.TechStore.TechStore.service.models.AddShoppingCartObjectResponse;
-import web.app.TechStore.TechStore.service.models.ShoppingCartObjectsByUserRequest;
-import web.app.TechStore.TechStore.service.models.ShoppingCartObjectsByUserResponse;
+import web.app.TechStore.TechStore.service.models.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,5 +33,15 @@ public class ShoppingCartServlet extends HttpServlet {
         AddShoppingCartObjectResponse addShoppingCartObjectResponse =
                 shoppingCartService.addShoppingCardObject(new AddShoppingCartObjectRequest(productID,userID,productQuantity));
         resp.sendRedirect("");
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doDelete(req, resp);
+        long shoppingCartObjectId = Long.parseLong(req.getParameter("shoppingCartObjectId"));
+        ShoppingCartService shoppingCartService = (ShoppingCartService) req.getServletContext().getAttribute("shoppingCartService");
+        DeleteShoppingCartObjectResponse deleteShoppingCartObjectResponse =
+                shoppingCartService.deleteShoppingCartObject(new DeleteShoppingCartObjectRequest(shoppingCartObjectId));
+
     }
 }
