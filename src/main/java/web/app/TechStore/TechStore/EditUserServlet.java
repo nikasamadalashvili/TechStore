@@ -31,7 +31,8 @@ public class EditUserServlet extends HttpServlet {
         UserDetails userDetails = userService.getUserDetails(detailsRequest);
         if(userDetails != null) {
             req = setAttributes(req,userDetails);
-            req.getRequestDispatcher("/profile-edit.jsp").forward(req, resp);
+            req.setAttribute("viewName","profile-edit.jsp");
+            req.getRequestDispatcher("/main.jsp").forward(req, resp);
         }
     }
 
@@ -64,7 +65,8 @@ public class EditUserServlet extends HttpServlet {
         boolean hasChanged = userService.changeProfile(detailsRequest,userDetails);
         if(hasChanged) {
             req = setAttributes(req,userService.getUserDetails(detailsRequest));
-            req.getRequestDispatcher("/profile-view.jsp").forward(req,resp);
+            req.setAttribute("viewName","profile-view.jsp");
+            req.getRequestDispatcher("/main.jsp").forward(req, resp);
         }
     }
 

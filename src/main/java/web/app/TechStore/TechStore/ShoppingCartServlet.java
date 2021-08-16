@@ -17,7 +17,7 @@ public class ShoppingCartServlet extends HttpServlet {
         //super.doGet(req, resp);
         ShoppingCartService shoppingCartService = (ShoppingCartService) req.getServletContext().getAttribute("shoppingCartService");
         ShoppingCartObjectsByUserResponse shoppingCartObjectsByUserResponse =
-                shoppingCartService.getShoppingCartObjectsByUserId(new ShoppingCartObjectsByUserRequest(Long.parseLong(req.getParameter("id"))));
+                shoppingCartService.getShoppingCartObjectsByUserId(new ShoppingCartObjectsByUserRequest(4l));
         req.setAttribute("cartProducts", shoppingCartObjectsByUserResponse.getShoppingCartObjects());
         req.setAttribute("totalCost", shoppingCartObjectsByUserResponse.getTotalCost());
         req.setAttribute("viewName", "shoppingCart.jsp");

@@ -26,7 +26,8 @@ public class UserServlet extends HttpServlet {
             req.setAttribute("email", userDetails.getEmail());
             req.setAttribute("username", userDetails.getUsername());
             req.setAttribute("image", userDetails.getImage());
-            req.getRequestDispatcher("/profile-view.jsp").forward(req, resp);
+            req.setAttribute("viewName","profile-view.jsp");
+            req.getRequestDispatcher("/main.jsp").forward(req, resp);
         }
     }
 }

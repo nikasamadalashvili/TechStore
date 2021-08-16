@@ -72,7 +72,7 @@ public class ProductServlet extends HttpServlet {
                 lteAs, fiveGs, nfcs, colors, pricefrom, priceTo));
         String a = responseRes.getFilteredProducts().toString();
 
-        AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("a", "a", "a",
+        AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("iphone12", "12", "xiaomi",
         "a", null, 123, 19,50.0, "kkkkkkk",9, "a", null, "a", 5, null,
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a","a","a",

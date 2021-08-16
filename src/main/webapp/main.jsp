@@ -20,6 +20,10 @@
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             rel="stylesheet"
     />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="skin-light">
 <header>
@@ -63,7 +67,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#!" class="nav-link waves-effect">
+                        <a href="/shopping-cart" class="nav-link waves-effect">
                             Shop
                         </a>
                     </li>
@@ -78,9 +82,8 @@
                         </a>
                     </li>
                     <li class="nav-item pl-2 mb-2 mb-md-0">
-                        <a href="#!" type="button"
-                           class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">Sign
-                            up</a>
+                        <a href="/profile" type="button"
+                           class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">profile</a>
                     </li>
                 </ul>
 
