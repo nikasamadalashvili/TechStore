@@ -22,7 +22,8 @@ public class MobileServlet extends HttpServlet {
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), 0.0, 1000000.0));
         request.setAttribute("mobiles", filteredMobileList.getFilteredProducts());
-        request.getRequestDispatcher("mobile-index.jsp").forward(request, response);
+        request.setAttribute("viewName", "mobile-index.jsp");
+        request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 
     @Override
