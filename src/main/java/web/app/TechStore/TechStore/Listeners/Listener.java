@@ -1,6 +1,8 @@
 package web.app.TechStore.TechStore.Listeners;
 
 import web.app.TechStore.TechStore.service.MobileService;
+import web.app.TechStore.TechStore.service.RoleService;
+import web.app.TechStore.TechStore.service.ShoppingCartService;
 import web.app.TechStore.TechStore.service.UserService;
 
 import javax.persistence.EntityManager;
@@ -17,6 +19,8 @@ public class Listener implements ServletRequestListener {
     public void requestDestroyed(ServletRequestEvent sre) {
         sre.getServletContext().removeAttribute("mobileService");
         sre.getServletContext().removeAttribute("userService");
+        sre.getServletContext().removeAttribute("shoppingCartService");
+        sre.getServletContext().removeAttribute("roleService");
     }
 
     @Override
@@ -27,5 +31,9 @@ public class Listener implements ServletRequestListener {
         sre.getServletContext().setAttribute("mobileService",mobileService);
         UserService userService = new UserService(mobileService, entityManager);
         sre.getServletContext().setAttribute("userService", userService);
+        ShoppingCartService shoppingCartService = new ShoppingCartService(entityManager);
+        sre.getServletContext().setAttribute("shoppingCartService", shoppingCartService);
+        RoleService roleService = new RoleService(entityManager);
+        sre.getServletContext().setAttribute("roleService", roleService);
     }
 }
