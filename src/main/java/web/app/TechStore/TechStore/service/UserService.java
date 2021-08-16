@@ -1,11 +1,13 @@
 package web.app.TechStore.TechStore.service;
 
+import web.app.TechStore.TechStore.DomainModels.ShoppingCartObjects;
 import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.service.models.UserDetails;
 import web.app.TechStore.TechStore.service.models.UserDetailsRequest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.List;
 
 public class UserService {
 
@@ -27,6 +29,7 @@ public class UserService {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(users);
+            entityManager.flush();
             entityManager.getTransaction().commit();
             return true;
         } catch(Exception e) {
@@ -51,6 +54,7 @@ public class UserService {
         try {
             entityManager.getTransaction().begin();
             query.executeUpdate();
+            entityManager.flush();
             entityManager.getTransaction().commit();
             return true;
         } catch(Exception e) {
@@ -58,5 +62,36 @@ public class UserService {
             return false;
         }
     }
+    public boolean deleteUser(UserDetailsRequest request) {
+        Users user = entityManager.find(Users.class,request.getId());
 
+//        List<ShoppingCartObjects> shoppingCartObjects = entityManager.createQuery("select s from ShoppingCartObjects s where s.productId = :id")
+//                .setParameter("id",request.getId()).getResultList();
+//        shoppingCartObjects.forEach(object -> {
+//            try {
+//                entityManager.getTransaction().begin();
+//                entityManager.remove(object);
+//                entityManager.getTransaction().commit();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
+        // role
+//        try {
+//            entityManager.getTransaction().begin();
+//            entityManager.remove(shoppingCartObjects);
+//            entityManager.getTransaction().commit();
+//
+//            entityManager.getTransaction().begin();
+//            entityManager.remove(user);
+//            entityManager.getTransaction().commit();
+//            System.out.println("movedi");
+//            return true;
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//            entityManager.getTransaction().rollback();
+//            return false;
+//        }
+        return true;
+    }
 }

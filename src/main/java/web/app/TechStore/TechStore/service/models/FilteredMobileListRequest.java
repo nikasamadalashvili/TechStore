@@ -1,6 +1,5 @@
 package web.app.TechStore.TechStore.service.models;
 
-import com.sun.scenario.animation.shared.InfiniteClipEnvelope;
 
 import java.util.List;
 

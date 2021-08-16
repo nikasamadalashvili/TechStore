@@ -115,7 +115,7 @@ public class Users {
         return Objects.hash(userId, firstName, lastName, email, username, password, image);
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "roleID", referencedColumnName = "roleID")
     public Roles getRolesByRoleId() {
         return rolesByRoleId;

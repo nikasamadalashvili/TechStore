@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Listeners;
 
+import web.app.TechStore.TechStore.service.CreditCardService;
 import web.app.TechStore.TechStore.service.MobileService;
 import web.app.TechStore.TechStore.service.UserService;
 
@@ -17,6 +18,7 @@ public class Listener implements ServletRequestListener {
     public void requestDestroyed(ServletRequestEvent sre) {
         sre.getServletContext().removeAttribute("mobileService");
         sre.getServletContext().removeAttribute("userService");
+        sre.getServletContext().removeAttribute("cardsService");
     }
 
     @Override
@@ -27,5 +29,8 @@ public class Listener implements ServletRequestListener {
         sre.getServletContext().setAttribute("mobileService",mobileService);
         UserService userService = new UserService(mobileService, entityManager);
         sre.getServletContext().setAttribute("userService", userService);
+
+        CreditCardService creditCardService = new CreditCardService(entityManager);
+        sre.getServletContext().setAttribute("cardService",creditCardService);
     }
 }

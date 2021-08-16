@@ -18,7 +18,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDetailsRequest detailsRequest = new UserDetailsRequest(4L);
         UserService userService = (UserService) req.getServletContext().getAttribute("userService");
-
+        userService.deleteUser(detailsRequest);
         UserDetails userDetails = userService.getUserDetails(detailsRequest);
         if(userDetails != null) {
             req.setAttribute("firstName", userDetails.getFirstName());

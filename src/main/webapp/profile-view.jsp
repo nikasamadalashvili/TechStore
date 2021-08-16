@@ -53,6 +53,11 @@
                             <p><span>Password </span>: ${password}</p>
                         </div>
                     </div>
+                    <form action="creditCard-add" method="get">
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">add Creditcard</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
