@@ -19,6 +19,7 @@ public class ShoppingCartServlet extends HttpServlet {
         ShoppingCartObjectsByUserResponse shoppingCartObjectsByUserResponse =
                 shoppingCartService.getShoppingCartObjectsByUserId(new ShoppingCartObjectsByUserRequest(Long.parseLong(req.getParameter("id"))));
         req.setAttribute("cartProducts", shoppingCartObjectsByUserResponse.getShoppingCartObjects());
+        req.setAttribute("totalCost", shoppingCartObjectsByUserResponse.getTotalCost());
         req.setAttribute("viewName", "shoppingCart.jsp");
         req.getRequestDispatcher("main.jsp").forward(req, resp);
     }

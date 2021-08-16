@@ -7,6 +7,7 @@ import web.app.TechStore.TechStore.service.models.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -91,7 +92,13 @@ public class ShoppingCartService {
                 ("select obj from ShoppingCartObjects obj where obj.userByUserId.userId = :givenUserId");
         query.setParameter("givenUserId", request.getUserId());
         List<ShoppingCartObjects> result = query.getResultList();
-        return new ShoppingCartObjectsByUserResponse(result);
+        Double totalCost = 0.0;
+        for (ShoppingCartObjects x: result
+             ) {
+            totalCost += x.getTotalCostImmutable();
+        }
+
+        return new ShoppingCartObjectsByUserResponse(result, totalCost);
     }
 
 
