@@ -498,7 +498,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <jsp:useBean id="mobiles" scope="request" type="java.util.List"/>
       <c:forEach var="mobile" items="${mobiles}">
-        <div class="col">
+        <!--<div class="col">
           <div class="card shadow-sm">
             <img src="images/${mobile.getImageName()}" class="img-fluid">
             <div class="card-body">
@@ -512,7 +512,26 @@
               </div>
             </div>
           </div>
+        </div>-->
+      <div class="col-md-4 mb-5">
+        <div >
+          <div class="view zoom overlay rounded z-depth-2" style="height: 260px;">
+            <img class="img-fluid w-100"
+                 src="images/${mobile.getImageName()}" alt="Sample">
+            <a href="mobile-details?mobileId=${mobile.get}">
+              <div class="mask">
+                <img class="img-fluid w-100"
+                     src="${mobile.getImageName()}">
+                <div class="mask rgba-black-slight"></div>
+              </div>
+            </a>
+          </div>
+          <div class="text-center pt-4">
+            <h5>${mobile.getName()}</h5>
+            <p><span class="mr-1"><strong>$${mobile.getPrice()}</strong></span></p>
+          </div>
         </div>
+      </div>
       </c:forEach>
     </div>
   </div>
@@ -522,5 +541,6 @@
 <script
         type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
-></script>
+>
+</script>
 </html>
