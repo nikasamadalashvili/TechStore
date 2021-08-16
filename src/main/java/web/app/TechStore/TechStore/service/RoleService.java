@@ -6,9 +6,11 @@ import web.app.TechStore.TechStore.service.models.AddNewRoleResponse;
 import web.app.TechStore.TechStore.service.models.EditRoleRequest;
 import web.app.TechStore.TechStore.service.models.EditRoleResponse;
 
-import javax.management.Query;
 import javax.management.relation.Role;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoleService {
     private EntityManager entityManager;
@@ -25,8 +27,12 @@ public class RoleService {
         return new AddNewRoleResponse(true);
     }
 
-    public long roleIdByName(String roleName){ //?
-        return 0;
+    public List<Roles> getAllRoles(){
+        List<Roles> rolesList= new ArrayList<>();
+        Query query = entityManager.createQuery("select r from Roles r");
+        rolesList = query.getResultList();
+        return rolesList;
+
     }
 
     public EditRoleResponse editRole(EditRoleRequest request){
