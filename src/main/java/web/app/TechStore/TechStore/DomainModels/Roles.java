@@ -9,6 +9,14 @@ public class Roles {
     private String roleName;
     private long roleClaim;
 
+    public Roles(String roleName, long roleClaim) {
+        this.roleName = roleName;
+        this.roleClaim = roleClaim;
+    }
+
+    public Roles() {
+    }
+
     @Id
     @Column(name = "roleID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -3,6 +3,7 @@ package web.app.TechStore.TechStore;
 import web.app.TechStore.TechStore.DomainModels.Gps;
 import web.app.TechStore.TechStore.DomainModels.ShoppingCartObjects;
 import web.app.TechStore.TechStore.service.MobileService;
+import web.app.TechStore.TechStore.service.RoleService;
 import web.app.TechStore.TechStore.service.ShoppingCartService;
 import web.app.TechStore.TechStore.service.models.*;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.management.relation.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -93,20 +95,29 @@ public class ProductServlet extends HttpServlet {
         //DeleteProductResponse deleteResp = mobileService.deleteProduct(new DeleteProductRequest(127));
         //boolean a = responseRes.isAddedSuccesfully();
 
-        ShoppingCartService shoppingCartService =
+        /*ShoppingCartService shoppingCartService =
                 (ShoppingCartService)request.getServletContext().getAttribute("shoppingCartService");
 
         AddShoppingCartObjectResponse addShoppingCartObjectResponse =
                 shoppingCartService.addShoppingCardObject
-                        (new AddShoppingCartObjectRequest(181, 5, 125));
+                        (new AddShoppingCartObjectRequest(181, 5, 125));*/
 
        /* DeleteShoppingCartObjectResponse deleteShoppingCartObjectResponse =
                 shoppingCartService.deleteShoppingCartObject
                         (new DeleteShoppingCartObjectRequest(209));*/
 
-        EditShoppingCartObjectResponse editShoppingCartObjectResponse =
+        /*EditShoppingCartObjectResponse editShoppingCartObjectResponse =
                 shoppingCartService.editShoppingCartObject
-                        (new EditShoppingCartObjectRequest(214, 19));
+                        (new EditShoppingCartObjectRequest(214, 19));*/
+
+        RoleService roleService =
+                (RoleService) request.getServletContext().getAttribute("roleService");
+
+        AddNewRoleResponse addNewRoleResponse =
+                roleService.addNewRole(new AddNewRoleRequest("barbaca", 112));
+
+        EditRoleResponse editRoleResponse = roleService.editRole
+                (new EditRoleRequest(123, 216, "ckaf"));
 
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
