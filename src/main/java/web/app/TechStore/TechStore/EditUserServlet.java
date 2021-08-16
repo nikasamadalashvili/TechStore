@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.UUID;
 
 @WebServlet(name = "profile-edit",value = "/profile-edit")
@@ -39,28 +40,37 @@ public class EditUserServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDetailsRequest detailsRequest = new UserDetailsRequest(4L);
-        UserDetails userDetails = new UserDetails(req.getParameter("firstName"),req.getParameter("lastName"),
-                                            req.getParameter("email"), req.getParameter("username"),"");
-        UserService userService = (UserService) req.getServletContext().getAttribute("userService");
-
         String appPath = "/home/nika/Desktop/TechStore/src/main/webapp/images/";
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
+        UserDetailsRequest detailsRequest = new UserDetailsRequest(4L);
+        UserDetails userDetails = new UserDetails(req.getParameter("firstName"),req.getParameter("lastName"),
+                req.getParameter("email"), req.getParameter("username"),"");
+        UserService userService = (UserService) req.getServletContext().getAttribute("userService");
+        HashMap<String, String> parameters = new HashMap<>();
         upload.parseRequest(req).stream()
-                .filter(o -> !((FileItem)o).isFormField())
                 .forEach(o -> {
                     FileItem item = (FileItem) o;
-                    try {
-                        MimeType mimeType = MimeTypes.getDefaultMimeTypes().forName(item.getContentType());
-                        String fileName = UUID.randomUUID() + mimeType.getExtension();
-                        userDetails.setImage(fileName);
-                        File newImagePath = new File(appPath + fileName);
-                        item.write(newImagePath);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    if (item.isFormField()) {
+                        parameters.put(item.getFieldName(), item.getString());
+                    }
+                    else {
+                        try {
+                            MimeType mimeType = MimeTypes.getDefaultMimeTypes().forName(item.getContentType());
+                            String fileName = UUID.randomUUID() + mimeType.getExtension();
+                            userDetails.setImage(fileName);
+                            File newImagePath = new File(appPath + fileName);
+                            item.write(newImagePath);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
+
+        userDetails.setEmail(parameters.get("email"));
+        userDetails.setFirstName(parameters.get("firstName"));
+        userDetails.setLastName(parameters.get("lastName"));
+        userDetails.setEmail(parameters.get("username"));
 
         boolean hasChanged = userService.changeProfile(detailsRequest,userDetails);
         if(hasChanged) {

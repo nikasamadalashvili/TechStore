@@ -514,21 +514,17 @@
           </div>
         </div>-->
       <div class="col-md-4 mb-5">
-        <div >
-          <div class="view zoom overlay rounded z-depth-2" style="height: 260px;">
-            <img class="img-fluid w-100"
-                 src="images/${mobile.getImageName()}" alt="Sample">
-            <a href="mobile-details?mobileId=${mobile.get}">
-              <div class="mask">
-                <img class="img-fluid w-100"
-                     src="${mobile.getImageName()}">
-                <div class="mask rgba-black-slight"></div>
+        <div class="card shadow-sm">
+          <img src="images/${mobile.getImageName()}" class="img-fluid">
+          <div class="card-body">
+            <p class="card-text">Name: ${mobile.getName()}, Price: ${mobile.getPrice()}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="mobile-details?mobileId=${mobile.getProductId()}">View</a></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
               </div>
-            </a>
-          </div>
-          <div class="text-center pt-4">
-            <h5>${mobile.getName()}</h5>
-            <p><span class="mr-1"><strong>$${mobile.getPrice()}</strong></span></p>
+              <small class="text-muted">9 mins</small>
+            </div>
           </div>
         </div>
       </div>
@@ -536,11 +532,3 @@
     </div>
   </div>
 </div>
-</body>
-<!-- MDB -->
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
->
-</script>
-</html>
