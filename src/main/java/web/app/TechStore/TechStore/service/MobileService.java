@@ -141,12 +141,14 @@ public class MobileService {
                 request.getDolbyVision());
         entityManager.getTransaction().begin();
         entityManager.persist(display);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         Sensors sensor = new Sensors(request.getFingerprint(), request.getAcceleremeter(), request.getCompass(),
                 request.getGyroscope(), request.getProximity());
         entityManager.getTransaction().begin();
         entityManager.persist(sensor);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         Camera camera = new Camera(request.getNumberOfCamera(), request.getMainCameraMp(), request.getSecondCameraMp(),
@@ -156,6 +158,7 @@ public class MobileService {
                 request.getSelfieAutofocus(), request.getSelfieHdr());
         entityManager.getTransaction().begin();
         entityManager.persist(camera);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         AdditionalSpecs additionalSpecs = new AdditionalSpecs(request.getFmRatioSupport(),
@@ -169,6 +172,7 @@ public class MobileService {
                 request.getWarranty());
         entityManager.getTransaction().begin();
         entityManager.persist(additionalSpecs);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         GeneralInfo generalInfo = new GeneralInfo(request.getTwoG(), request.getThreeG(), request.getLte(),
@@ -181,6 +185,7 @@ public class MobileService {
         Gps gps = new Gps(request.getaGps(), request.getGalileo(), request.getBds(), request.getGlonass());
         entityManager.getTransaction().begin();
         entityManager.persist(gps);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         Processor processor = new Processor(request.getManufacturer(), request.getTypeOfProcessor(),
@@ -188,12 +193,14 @@ public class MobileService {
                 request.getLithography());
         entityManager.getTransaction().begin();
         entityManager.persist(processor);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         Memory memory = new Memory(request.getRam(), request.getInternalMemory(), request.getMemoryCardSupport(),
                 request.getMemoryCardMaximumSize(), request.getTypeOfMemoryCard());
         entityManager.getTransaction().begin();
         entityManager.persist(memory);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         Products product = new Products(request.getName(), request.getModelName(), request.getBrand(),
@@ -203,6 +210,7 @@ public class MobileService {
 
         entityManager.getTransaction().begin();
         entityManager.persist(product);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         return new AddProductResponse(true, product.getProductId());
@@ -321,6 +329,7 @@ public class MobileService {
         addSpc.setWifiDirect(request.getWifiDirect());
         addSpc.setWirelessCharging(request.getWirelessCharging());
 
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         return new EditProductResponse(true);
@@ -348,6 +357,7 @@ public class MobileService {
         entityManager.remove(mem);
         entityManager.remove(addSpc);
         entityManager.remove(product);
+        entityManager.flush();
         entityManager.getTransaction().commit();
 
         return new DeleteProductResponse(true);
