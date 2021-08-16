@@ -23,6 +23,7 @@ public class RoleService {
         entityManager.getTransaction().begin();
         Roles role = new Roles(request.getRoleName(), request.getRoleClaim());
         entityManager.persist(role);
+        entityManager.flush();
         entityManager.getTransaction().commit();
         return new AddNewRoleResponse(true);
     }
@@ -40,6 +41,7 @@ public class RoleService {
         Roles role = entityManager.find(Roles.class, request.getRoleId());
         role.setRoleClaim(request.getRoleClaim());
         role.setRoleName(request.getRoleName());
+        entityManager.flush();
         entityManager.getTransaction().commit();
         return new EditRoleResponse(true);
     }

@@ -24,6 +24,7 @@ public class ShoppingCartService {
         Double productPrice = product.getPrice();
         Integer prod_quantity = request.getProductQuantity();
         if (prod_quantity > product.getAvailableQuantity()){
+            entityManager.flush();
             entityManager.getTransaction().commit();
             return new AddShoppingCartObjectResponse(false, -1);
         }
@@ -32,6 +33,7 @@ public class ShoppingCartService {
         product.setReservedQuantity(product.getReservedQuantity() + prod_quantity);
         product.setAvailableQuantity(product.getAvailableQuantity() - prod_quantity);
         entityManager.persist(shoppingCartObject);
+        entityManager.flush();
         entityManager.getTransaction().commit();
         return new AddShoppingCartObjectResponse(true,
                 shoppingCartObject.getShoppingCardObjID());
@@ -48,6 +50,7 @@ public class ShoppingCartService {
         Integer new_prod_quantity = request.getProductQuantity();
         Integer delta = new_prod_quantity - old_prod_quantity;
         if (product.getAvailableQuantity()-delta < 0){
+            entityManager.flush();
             entityManager.getTransaction().commit();
             return new EditShoppingCartObjectResponse(false);
         }
@@ -62,6 +65,7 @@ public class ShoppingCartService {
         }
         shoppingCartObject.setTotalCostImmutable(new_total_price);
         shoppingCartObject.setTotalQuantityImmutable(new_prod_quantity);
+        entityManager.flush();
         entityManager.getTransaction().commit();
         return new EditShoppingCartObjectResponse(true);
     }
@@ -75,6 +79,7 @@ public class ShoppingCartService {
         product.setAvailableQuantity(product.getAvailableQuantity()+shoppingCartObject.getTotalQuantityImmutable());
         product.setReservedQuantity(product.getReservedQuantity()-shoppingCartObject.getTotalQuantityImmutable());
         entityManager.remove(shoppingCartObject);
+        entityManager.flush();
         entityManager.getTransaction().commit();
         return new DeleteShoppingCartObjectResponse(true);
     }
