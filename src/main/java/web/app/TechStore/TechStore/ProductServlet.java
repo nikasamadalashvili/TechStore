@@ -1,7 +1,9 @@
 package web.app.TechStore.TechStore;
 
 import web.app.TechStore.TechStore.DomainModels.Gps;
+import web.app.TechStore.TechStore.DomainModels.ShoppingCartObjects;
 import web.app.TechStore.TechStore.service.MobileService;
+import web.app.TechStore.TechStore.service.ShoppingCartService;
 import web.app.TechStore.TechStore.service.models.*;
 
 import java.io.*;
@@ -55,13 +57,13 @@ public class ProductServlet extends HttpServlet {
         //opSyss.add("win10");
         //brands.add("Nokia");
         //brands.add("apple");
-        FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest(
+        /*FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest(
                 "", brands, opSyss, scrSizes, scrResos, rams, internalMems, memCardSupports,numberOfCameras,
                 mainCameraMps, secondCameraMps, typeOfProcessors, numberOfCoress, waterResistants, dualSims, ltes,
                 lteAs, fiveGs, nfcs, colors, pricefrom, priceTo));
-        String a = responseRes.getFilteredProducts().toString();
+        String a = responseRes.getFilteredProducts().toString();*/
 
-        AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("a", "a", "a",
+        /*AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("a", "a", "a",
         "a", null, 123, 19,50.0, "kkkkkkk",9, "a", null, "a", 5, null,
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a","a","a",
@@ -73,7 +75,7 @@ public class ProductServlet extends HttpServlet {
                 "a","a",5, "a","a", 5,
                 "a","a","a","a","a","a",
                 "a","a","a","a","a","a","a",
-                "a","a","a","a","a","a"));
+                "a","a","a","a","a","a"));*/
 
         /*EditProductResponse resp = mobileService.editProduct(new EditProductRequest(127,"k", "alo", "a",
                 "a", null, 7,5,111.0,"kbva", 7, "a", null, "a", 5, null,
@@ -90,9 +92,25 @@ public class ProductServlet extends HttpServlet {
                 "a","a","a","a","a","a"));*/
         //DeleteProductResponse deleteResp = mobileService.deleteProduct(new DeleteProductRequest(127));
         //boolean a = responseRes.isAddedSuccesfully();
+
+        ShoppingCartService shoppingCartService =
+                (ShoppingCartService)request.getServletContext().getAttribute("shoppingCartService");
+
+        AddShoppingCartObjectResponse addShoppingCartObjectResponse =
+                shoppingCartService.addShoppingCardObject
+                        (new AddShoppingCartObjectRequest(181, 5, 125));
+
+       /* DeleteShoppingCartObjectResponse deleteShoppingCartObjectResponse =
+                shoppingCartService.deleteShoppingCartObject
+                        (new DeleteShoppingCartObjectRequest(209));*/
+
+        EditShoppingCartObjectResponse editShoppingCartObjectResponse =
+                shoppingCartService.editShoppingCartObject
+                        (new EditShoppingCartObjectRequest(214, 19));
+
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h2>" + responseResu.getProductId() + "<h2>");
+        out.println("<h2>" + "a" + "<h2>");
         out.println("</body></html>");
     }
 
