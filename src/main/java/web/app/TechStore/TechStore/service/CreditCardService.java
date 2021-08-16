@@ -21,6 +21,7 @@ public class CreditCardService {
             try {
                 entityManager.getTransaction().begin();
                 entityManager.persist(creditCard);
+                entityManager.flush();
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {

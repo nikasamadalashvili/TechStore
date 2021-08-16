@@ -31,15 +31,12 @@ public class CreditCardServlet extends HttpServlet {
                 .build();
 
         boolean hasAdded = cardService.addCreditCard(cardRequest);
-        if(hasAdded == true) {
+        if(hasAdded) {
                 req.setAttribute("can",hasAdded);
-                req.getRequestDispatcher("/profile").forward(req,resp);
-            req.setAttribute("viewName","/profile");
-            req.getRequestDispatcher("/main.jsp").forward(req, resp);
+                resp.sendRedirect("/profile");
         } else {
             req.setAttribute("can",hasAdded);
-            req.setAttribute("viewName","creditcard-add.jsp");
-            req.getRequestDispatcher("/main.jsp").forward(req, resp);
+           resp.sendRedirect("/creditcard-add");
         }
     }
 }
