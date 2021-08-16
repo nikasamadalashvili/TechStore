@@ -14,11 +14,13 @@ import java.io.IOException;
 public class CreditCardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       req.getRequestDispatcher("/creditcard-add.jsp").forward(req,resp);
+        req.setAttribute("viewName","creditcard-add.jsp");
+        req.getRequestDispatcher("/main.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         CreditCardService cardService = (CreditCardService) req.getServletContext().getAttribute("cardService");
 
         CreditCardRequest cardRequest = CreditCardRequest.builder()
@@ -29,12 +31,15 @@ public class CreditCardServlet extends HttpServlet {
                 .build();
 
         boolean hasAdded = cardService.addCreditCard(cardRequest);
-//        if(hasAdded == true) {
-//                req.setAttribute("can",hasAdded);
-//                req.getRequestDispatcher("/profile").forward(req,resp);
-//        } else {
-//            req.setAttribute("can",hasAdded);
-//            req.getRequestDispatcher("/creditCard-add").forward(req, resp);
-//        }
+        if(hasAdded == true) {
+                req.setAttribute("can",hasAdded);
+                req.getRequestDispatcher("/profile").forward(req,resp);
+            req.setAttribute("viewName","/profile");
+            req.getRequestDispatcher("/main.jsp").forward(req, resp);
+        } else {
+            req.setAttribute("can",hasAdded);
+            req.setAttribute("viewName","creditcard-add.jsp");
+            req.getRequestDispatcher("/main.jsp").forward(req, resp);
+        }
     }
 }

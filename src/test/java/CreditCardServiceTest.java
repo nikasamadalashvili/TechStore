@@ -29,7 +29,7 @@ class CreditCardServiceTest {
 
     @Test
     void addCreditCard() {
-        CreditCardRequest request = CreditCardRequest.builder().userId(2L)
+        CreditCardRequest request = CreditCardRequest.builder().userId(4L)
                                     .cardNumber("123456589").cvv("201").name("spo")
                                     .expiryDate("2023").build();
         boolean check = cardService.addCreditCard(request);

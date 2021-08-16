@@ -1,9 +1,6 @@
 package web.app.TechStore.TechStore.Listeners;
 
-import web.app.TechStore.TechStore.service.MobileService;
-import web.app.TechStore.TechStore.service.RoleService;
-import web.app.TechStore.TechStore.service.ShoppingCartService;
-import web.app.TechStore.TechStore.service.UserService;
+import web.app.TechStore.TechStore.service.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,5 +32,7 @@ public class Listener implements ServletRequestListener {
         sre.getServletContext().setAttribute("shoppingCartService", shoppingCartService);
         RoleService roleService = new RoleService(entityManager);
         sre.getServletContext().setAttribute("roleService", roleService);
+        CreditCardService cardService = new CreditCardService(entityManager);
+        sre.getServletContext().setAttribute("cardService",cardService);
     }
 }

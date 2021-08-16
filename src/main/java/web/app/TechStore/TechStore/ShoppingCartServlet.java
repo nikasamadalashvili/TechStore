@@ -27,13 +27,14 @@ public class ShoppingCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
-        long userID = Long.parseLong(req.getParameter("userId"));
+        long userID = 4l;
         long productID = Long.parseLong(req.getParameter("productId"));
         Integer productQuantity = Integer.parseInt(req.getParameter("productQuantity"));
         ShoppingCartService shoppingCartService = (ShoppingCartService) req.getServletContext().getAttribute("shoppingCartService");
         AddShoppingCartObjectResponse addShoppingCartObjectResponse =
                 shoppingCartService.addShoppingCardObject(new AddShoppingCartObjectRequest(productID,userID,productQuantity));
-        resp.sendRedirect("");
+        resp.sendRedirect("/shopping-cart");
+
     }
 
     @Override
@@ -43,6 +44,6 @@ public class ShoppingCartServlet extends HttpServlet {
         ShoppingCartService shoppingCartService = (ShoppingCartService) req.getServletContext().getAttribute("shoppingCartService");
         DeleteShoppingCartObjectResponse deleteShoppingCartObjectResponse =
                 shoppingCartService.deleteShoppingCartObject(new DeleteShoppingCartObjectRequest(shoppingCartObjectId));
-
+        resp.sendRedirect("/shopping-cart");
     }
 }

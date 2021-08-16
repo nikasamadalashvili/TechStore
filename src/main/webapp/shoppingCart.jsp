@@ -51,15 +51,25 @@
     </div>
     <div class="shopping-cart-footer">
         <div class="column">
+            <div class="column text-lg">Subtotal: <span class="text-medium">${totalCost}</span></div>
         </div>
-        <div class="column text-lg">Subtotal: <span class="text-medium">${totalCost}</span></div>
     </div>
     <div class="shopping-cart-footer">
         <div class="column"><a class="btn btn-outline-secondary" href="/mobiles"><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div>
-        <div class="column"><a class="btn btn-primary" href="" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" href="#">Checkout</a></div>
+        <div class="column"><a class="btn btn-primary" href="" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" onclick="checkoutfunc()">Checkout</a></div>
     </div>
 </div>
-
+<script>
+    function checkoutfunc() {
+        $.ajax({
+            url: '/shopping-cart',
+            type: 'DELETE',
+            success: function (result) {
+                // Do something with the result
+            }
+        });
+    }
+</script>
 <style type="text/css">
     body{margin-top:20px;}
     select.form-control:not([size]):not([multiple]) {

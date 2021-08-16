@@ -40,12 +40,23 @@
                         <div class="bio-row">
                             <p><span>Password </span>: ${password}</p>
                         </div>
+                        <form action="/creditCard-add" method="get">
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">add credit card</button>
+                        </div>
+                        </form>
+                        <form action="/creditCard-add" method="get">
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">view credit card</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <style type="text/css">
     body {

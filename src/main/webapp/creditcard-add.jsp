@@ -47,7 +47,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label for="expdata">Expiration Date</label>
-                                <input class="form-control" type=text name="expdate" id="expdata" placeholder="01.12.2022">
+                                <input class="form-control" type=text name="expdata" id="expdata" placeholder="01.12.2022">
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">

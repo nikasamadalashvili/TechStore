@@ -27,6 +27,7 @@ public class UserService {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(users);
+            entityManager.flush();
             entityManager.getTransaction().commit();
             return true;
         } catch(Exception e) {
@@ -47,6 +48,7 @@ public class UserService {
         query.setParameter("image",!details.getImage().equals("")? details.getImage() : user.getImage());
         query.setParameter("id",request.getId());
         query.setParameter("username",!details.getUsername().equals("")? details.getUsername() : user.getUsername());
+
 
         try {
             entityManager.getTransaction().begin();
