@@ -44,13 +44,13 @@ public class CreditCards {
     }
 
     @Basic
-    @Column(name = "cvv", nullable = false, length = 64)
-    public String getCvv() {
-        return cvv;
+    @Column(name = "userID", nullable = true)
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setCvv(String cvv) {
-        this.cvv = cvv;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -61,16 +61,6 @@ public class CreditCards {
 
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
-    }
-
-    @Basic
-    @Column(name = "userID", nullable = true)
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     @Override

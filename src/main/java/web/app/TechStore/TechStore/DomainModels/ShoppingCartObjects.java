@@ -20,7 +20,6 @@ public class ShoppingCartObjects {
 
     public ShoppingCartObjects() {
     }
-
     @Id
     @Column(name = "shoppingCartObjID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +31,7 @@ public class ShoppingCartObjects {
         this.shoppingCartObjID = shoppingCardObjID;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     public Users getUserByUserId() {
         return userByUserId;
