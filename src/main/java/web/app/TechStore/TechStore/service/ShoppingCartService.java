@@ -6,6 +6,8 @@ import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.service.models.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 
 public class ShoppingCartService {
@@ -76,5 +78,17 @@ public class ShoppingCartService {
         entityManager.getTransaction().commit();
         return new DeleteShoppingCartObjectResponse(true);
     }
+
+    public ShoppingCartObjectsByUserResponse getShoppingCartObjectsByUserId
+            (ShoppingCartObjectsByUserRequest request)
+    {
+        Query query = entityManager.createQuery
+                ("select obj from ShoppingCartObjects obj where obj.userByUserId.userId = :givenUserId");
+        query.setParameter("givenUserId", request.getUserId());
+        List<ShoppingCartObjects> result = query.getResultList();
+        return new ShoppingCartObjectsByUserResponse(result);
+    }
+
+
 
 }
