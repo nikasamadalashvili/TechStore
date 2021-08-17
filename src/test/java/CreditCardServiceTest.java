@@ -2,9 +2,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import web.app.TechStore.TechStore.DomainModels.CreditCards;
-import web.app.TechStore.TechStore.service.CreditCardService;
-import web.app.TechStore.TechStore.service.models.CreditCardRequest;
-import web.app.TechStore.TechStore.service.models.CreditCardResponse;
+import web.app.TechStore.TechStore.Services.CreditCardService;
+import web.app.TechStore.TechStore.Services.models.CreditCardRequest;
+import web.app.TechStore.TechStore.Services.models.CreditCardResponse;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

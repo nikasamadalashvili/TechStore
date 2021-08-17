@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--Section: Block Content-->
-<jsp:useBean id="mobileDetails" scope="request" type="web.app.TechStore.TechStore.service.models.MobileDetailsResponse"/>
+<jsp:useBean id="mobileDetails" scope="request" type="web.app.TechStore.TechStore.Services.models.MobileDetailsResponse"/>
 <section class="mb-5">
 
     <div class="row">

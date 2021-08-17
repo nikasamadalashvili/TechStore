@@ -1,4 +1,4 @@
-<%@ page import="web.app.TechStore.TechStore.service.models.ShoppingCartObjectsByUserResponse" %>
+<%@ page import="web.app.TechStore.TechStore.Services.models.ShoppingCartObjectsByUserResponse" %>
 <%@ page import="web.app.TechStore.TechStore.DomainModels.ShoppingCartObjects" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
