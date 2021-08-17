@@ -1,10 +1,10 @@
 package web.app.TechStore.TechStore;
 
-import web.app.TechStore.TechStore.service.AuthenticationService;
-import web.app.TechStore.TechStore.service.MobileService;
-import web.app.TechStore.TechStore.service.models.AuthenticationRequest;
-import web.app.TechStore.TechStore.service.models.AuthenticationResponse;
+import web.app.TechStore.TechStore.Services.AuthenticationService;
+import web.app.TechStore.TechStore.Services.models.AuthenticationRequest;
+import web.app.TechStore.TechStore.Services.models.AuthenticationResponse;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +14,12 @@ import java.io.IOException;
 
 @WebServlet(name = "authentication", value="/authentication")
 public class AuthenticationServlet extends HttpServlet {
+    @Inject
+    AuthenticationService authenticationService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
-        AuthenticationService authenticationService =
-                (AuthenticationService) req.getServletContext().getAttribute("authenticationService");
         AuthenticationResponse authenticationResponse =
                 authenticationService.getUserId(new AuthenticationRequest
                         (req.getParameter("name"), req.getParameter("pass")));

@@ -13,15 +13,15 @@
             <thead>
             <tr>
                 <th>Product Name</th>
-                <th class="text-center">Quantity</th>
+                <th class="text-center">select Quantity</th>
                 <th class="text-center">Subtotal</th>
-                <th class="text-center">Discount</th>
-                <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a></th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center"><a onclick="clearAll()" class="btn btn-sm btn-outline-danger" href="#">Clear Cart</a></th>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="cart" items="${cartProducts}">
-            <tr>
+            <tr class="my-class">
                 <td>
                     <div class="product-item">
                         <a class="product-thumb" href="#"><img src="https://via.placeholder.com/220x180/FF0000/000000" alt="Product"></a>
@@ -32,7 +32,7 @@
                 </td>
                 <td class="text-center">
                     <div class="count-input">
-                        <select class="form-control" name="quantity">
+                        <select class="form-control" name="quantity" id="${cart.getShoppingCardObjID()}">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -42,15 +42,27 @@
                     </div>
                 </td>
                 <td class="text-center text-lg text-medium">${cart.getTotalCostImmutable()}</td>
-                <td class="text-center text-lg text-medium">-</td>
+                <td class="text-center text-lg text-medium">${cart.getTotalQuantityImmutable()}</td>
                     <td class="text-center"><a onclick="remove()" class="remove-from-cart" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
                     <script>
                         function remove() {
                            <!-- document.getElementById("rmv").submit();-->
                             $.ajax({
                                 url: '/shopping-cart?object=${cart.getShoppingCardObjID()}',
-                                type: 'PUT'
-                            });
+                                type: 'DELETE'
+                            }).done( function () {
+                                    window.location = '/shopping-cart'
+                                }
+                            );
+                        }
+                        function clearAll() {
+                            $.ajax({
+                                url: '/shopping-cart',
+                                type: 'DELETE'
+                            }).done( function () {
+                                    window.location = '/shopping-cart'
+                                }
+                            );
                         }
                     </script>
             </tr>
@@ -65,20 +77,47 @@
     </div>
     <div class="shopping-cart-footer">
         <div class="column"><a class="btn btn-outline-secondary" href="/mobiles"><i class="icon-arrow-left"></i>&nbsp;Back to Shopping</a></div>
-        <div class="column"><a class="btn btn-primary" href="" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a><a class="btn btn-success" onclick="checkoutfunc()">Checkout</a></div>
+        <div class="column">
+            <a class="btn btn-primary" onclick="updateCard()" data-toast="" data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check"
+               data-toast-title="Your cart" data-toast-message="is updated successfully!">Update Cart</a>
+            <a class="btn btn-success" onclick="checkoutfunc()">Checkout</a>
+        </div>
+        <script>
+            function updateCard() {
+                let resultArr = [];
+                let tr = document.getElementsByClassName("my-class");
+                for (let i = 0; i < tr.length; i++) {
+                    let itemQuantity = tr[i].getElementsByTagName('select')[0].value;
+                    let itemName = tr[i].getElementsByTagName('select')[0].id;
+                    resultArr.push({
+                        itemName: itemName,
+                        itemQuantity: itemQuantity
+                    });
+                }
+                $.ajax({
+                    url: '/shopping-cart',
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify(resultArr)
+                }).done( function () {
+                        window.location = '/shopping-cart'
+                    }
+                );
+            }
+            function checkoutfunc() {
+                $.ajax({
+                    url: '/shopping-cart',
+                    type: 'DELETE',
+
+                }).done( function () {
+                        window.location = "/shopping-cart"
+                    }
+                );
+            }
+        </script>
     </div>
 </div>
-<script>
-    function checkoutfunc() {
-        $.ajax({
-            url: '/shopping-cart',
-            type: 'DELETE',
-            success: function (result) {
-                // Do something with the result
-            }
-        });
-    }
-</script>
+
 <style type="text/css">
     body{margin-top:20px;}
     select.form-control:not([size]):not([multiple]) {

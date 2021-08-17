@@ -202,7 +202,7 @@
                     </tbody>
                 </table>
             </div>
-            <form method="post" action="shopping-cart?userId=4&productId=${mobileDetails.productId}&productQuantity=3">
+            <form method="post" action="shopping-cart?userId=4&productId=${mobileDetails.productId}&productQuantity=1">
                 <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Buy now</button>
                 <button type="submit" class="btn btn-light btn-md mr-1 mb-2"><i
                         class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
