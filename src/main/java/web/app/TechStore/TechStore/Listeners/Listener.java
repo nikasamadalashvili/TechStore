@@ -18,6 +18,7 @@ public class Listener implements ServletRequestListener {
         sre.getServletContext().removeAttribute("userService");
         sre.getServletContext().removeAttribute("shoppingCartService");
         sre.getServletContext().removeAttribute("roleService");
+        sre.getServletContext().removeAttribute("authenticationService");
     }
 
     @Override
@@ -34,5 +35,7 @@ public class Listener implements ServletRequestListener {
         sre.getServletContext().setAttribute("roleService", roleService);
         CreditCardService cardService = new CreditCardService(entityManager);
         sre.getServletContext().setAttribute("cardService",cardService);
+        AuthenticationService authenticationService = new AuthenticationService(entityManager);
+        sre.getServletContext().setAttribute("authenticationService", authenticationService);
     }
 }

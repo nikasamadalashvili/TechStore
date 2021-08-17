@@ -6,10 +6,8 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.tika.mime.MimeType;
-import org.apache.tika.mime.MimeTypeException;
 import org.apache.tika.mime.MimeTypes;
-import org.hibernate.id.GUIDGenerator;
-import web.app.TechStore.TechStore.DomainModels.Gps;
+import web.app.TechStore.TechStore.service.AuthenticationService;
 import web.app.TechStore.TechStore.service.MobileService;
 import web.app.TechStore.TechStore.service.models.*;
 
@@ -17,13 +15,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.mail.internet.ContentType;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -34,12 +25,12 @@ public class ProductServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getServletContext();
         response.setContentType("text/html");
-        MobileService mobileService = (MobileService) request.getServletContext().getAttribute("mobileService");
+        //MobileService mobileService = (MobileService) request.getServletContext().getAttribute("mobileService");
         //FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest("xiaomi"));
         //MobileDetailsResponse responseResult = mobileService.getMobileDetails(new MobileDetailsRequest(1L));
         // Hello
         //String a = mobileService.getMobileDetails(new MobileDetailsRequest(1L)).getFingerprint();
-        List<String> brands = new ArrayList<>();
+        /*List<String> brands = new ArrayList<>();
         List<String> opSyss = new ArrayList<>();
         List<Integer> scrSizes = new ArrayList<>();
         List<String> scrResos = new ArrayList<>();
@@ -58,21 +49,21 @@ public class ProductServlet extends HttpServlet {
         List<String> fiveGs = new ArrayList<>();
         List<String> nfcs = new ArrayList<>();
         List<String> colors = new ArrayList<>();
-        double pricefrom = 10;
-        double priceTo = 20;
+        double pricefrom = 999999;
+        double priceTo = 1000000;*/
         //scrSizes.add(4);
         //scrSizes.add(8);
         //opSyss.add("ios");
         //opSyss.add("win10");
         //brands.add("Nokia");
         //brands.add("apple");
-        FilteredMobileListResponse responseRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest(
+        /*FilteredMobileListResponse responsRes = mobileService.getFilteredMobileList(new FilteredMobileListRequest(
                 "", brands, opSyss, scrSizes, scrResos, rams, internalMems, memCardSupports,numberOfCameras,
                 mainCameraMps, secondCameraMps, typeOfProcessors, numberOfCoress, waterResistants, dualSims, ltes,
                 lteAs, fiveGs, nfcs, colors, pricefrom, priceTo));
-        String a = responseRes.getFilteredProducts().toString();
+        String a = responsRes.getFilteredProducts().toString();*/
 
-        AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("iphone12", "12", "xiaomi",
+        /*AddProductResponse responseResu = mobileService.addProduct(new AddProductRequest("iphone12", "12", "xiaomi",
         "a", null, 123, 19,50.0, "kkkkkkk",9, "a", null, "a", 5, null,
                 "a","a","a","a","a","a","a",
                 "a","a","a","a","a","a","a","a",
@@ -84,7 +75,7 @@ public class ProductServlet extends HttpServlet {
                 "a","a",5, "a","a", 5,
                 "a","a","a","a","a","a",
                 "a","a","a","a","a","a","a",
-                "a","a","a","a","a","a"));
+                "a","a","a","a","a","a"));*/
 
         /*EditProductResponse resp = mobileService.editProduct(new EditProductRequest(127,"k", "alo", "a",
                 "a", null, 7,5,111.0,"kbva", 7, "a", null, "a", 5, null,
@@ -101,9 +92,18 @@ public class ProductServlet extends HttpServlet {
                 "a","a","a","a","a","a"));*/
         //DeleteProductResponse deleteResp = mobileService.deleteProduct(new DeleteProductRequest(127));
         //boolean a = responseRes.isAddedSuccesfully();
+
+        AuthenticationService authenticationServiceService = (AuthenticationService) request.getServletContext().getAttribute("authenticationService");
+        AuthenticationResponse authorizationResponse = authenticationServiceService.getUserId
+                (new AuthenticationRequest("metelepono", "realPassword"));
+
+        /*ShoppingCartService shoppingCartService = (ShoppingCartService) request.getServletContext().getAttribute("shoppingCartService");
+        ShoppingCartObjectsByUserResponse resp = shoppingCartService.getShoppingCartObjectsByUserId
+                (new ShoppingCartObjectsByUserRequest(4));*/
+
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h2>" + responseResu.getProductId() + "<h2>");
+        out.println("<h2>" + authorizationResponse.getUserId() + "<h2>");
         out.println("</body></html>");
     }
 

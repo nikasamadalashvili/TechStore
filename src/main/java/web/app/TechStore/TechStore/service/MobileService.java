@@ -122,10 +122,15 @@ public class MobileService {
         query.setParameter("priceFrom", request.getPriceFrom());
         query.setParameter("priceTo", request.getPriceTo());
 
-        List<Products> resultList = (List<Products>) query.getResultList();
+        List<Products> resultList;
 
         ArrayList<FilteredMobileListResponse.ProductDto> productDtos = new ArrayList<>();
 
+        try{
+            resultList = (List<Products>) query.getResultList();
+        }catch (Exception e){
+            return new FilteredMobileListResponse(productDtos);
+        }
         resultList.forEach(products -> {
             productDtos.add(new FilteredMobileListResponse.ProductDto(products.getProductId(), products.getName(),
                     products.getPrice(), products.getImageName()));

@@ -31,9 +31,13 @@ public class RoleService {
     public List<Roles> getAllRoles(){
         List<Roles> rolesList= new ArrayList<>();
         Query query = entityManager.createQuery("select r from Roles r");
-        rolesList = query.getResultList();
-        return rolesList;
 
+        try{
+            rolesList = query.getResultList();
+        }catch(Exception e){
+            return rolesList;
+        }
+        return rolesList;
     }
 
     public EditRoleResponse editRole(EditRoleRequest request){
