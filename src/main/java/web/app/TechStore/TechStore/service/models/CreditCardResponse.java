@@ -9,5 +9,6 @@ public class CreditCardResponse {
     private String cardNumber;
     private String cvv;
     private String expiryDate;
+    private boolean present;
     //private String name;
 }

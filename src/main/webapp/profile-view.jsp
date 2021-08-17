@@ -45,9 +45,15 @@
                             <button class="btn btn-primary" type="submit">add credit card</button>
                         </div>
                         </form>
-                        <form action="/creditCard-add" method="get">
+                        <form action="/creditCard-view" method="get">
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">view credit card</button>
+                            </div>
+                        </form>
+                        <form action="/creditCard-view" method="post">
+                            <div class="col-12">
+                                <button class="btn btn-sm btn-danger" type="submit">
+                                    <i class="mdi mdi-lock-reset"></i> delete credit card</button>
                             </div>
                         </form>
                     </div>

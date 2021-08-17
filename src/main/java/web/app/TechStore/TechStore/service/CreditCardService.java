@@ -17,7 +17,7 @@ public class CreditCardService {
 
     public boolean addCreditCard(CreditCardRequest request) {
         CreditCards creditCard = new CreditCards(request.getCardNumber(),request.getCvv(),request.getExpiryDate(),request.getUserId());
-
+        if(!getCreditCardInfo(request).isPresent()) {
             try {
                 entityManager.getTransaction().begin();
                 entityManager.persist(creditCard);
@@ -29,18 +29,26 @@ public class CreditCardService {
                 e.printStackTrace();
                 return false;
             }
-
+        } {
+            return false;
+        }
     }
 
     public CreditCardResponse getCreditCardInfo(CreditCardRequest request) {
-
-        CreditCards creditCard = (CreditCards) entityManager.createQuery("select c from CreditCards c where  c.userId = :id")
-                .setParameter("id",request.getUserId()).getSingleResult();
-        return CreditCardResponse.builder()
-                .cardNumber(creditCard.getCardNumber())
-                .cvv(creditCard.getCvv())
-                .expiryDate(creditCard.getExpiryDate())
-                .build();
+        CreditCards creditCard = new CreditCards();
+        try {
+            creditCard = (CreditCards) entityManager.createQuery("select c from CreditCards c where  c.userId = :id")
+                    .setParameter("id", request.getUserId()).getSingleResult();
+            return CreditCardResponse.builder()
+                    .cardNumber(creditCard.getCardNumber())
+                    .cvv(creditCard.getCvv())
+                    .expiryDate(creditCard.getExpiryDate())
+                    .present(true)
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return CreditCardResponse.builder().present(false).build();
+        }
     }
 
     public CreditCardResponse changeCreditCardInfo(CreditCardRequest request) {
