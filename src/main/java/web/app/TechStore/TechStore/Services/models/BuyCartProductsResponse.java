@@ -1,4 +1,4 @@
-package web.app.TechStore.TechStore.service.models;
+package web.app.TechStore.TechStore.Services.models;
 
 public class BuyCartProductsResponse {
     private Double totalCost;
