@@ -87,6 +87,7 @@ public class ShoppingCartService {
         entityManager.remove(shoppingCartObject);
         entityManager.flush();
         entityManager.getTransaction().commit();
+
         return new DeleteShoppingCartObjectResponse(true);
     }
 

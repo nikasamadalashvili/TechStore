@@ -6,6 +6,7 @@ import web.app.TechStore.TechStore.Services.models.*;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,4 +48,14 @@ public class ShoppingCartServlet extends HttpServlet {
                 shoppingCartService.deleteShoppingCartObject(new DeleteShoppingCartObjectRequest(shoppingCartObjectId));
         resp.sendRedirect("/shopping-cart");
     }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ShoppingCartService service = (ShoppingCartService) req.getServletContext().getAttribute("shoppingCartService");
+        String objectid = req.getParameter("object");
+        service.deleteShoppingCartObject(new DeleteShoppingCartObjectRequest(Long.parseLong(req.getParameter("object"))));
+        resp.sendRedirect("/shopping-cart");
+    }
+
+
 }
