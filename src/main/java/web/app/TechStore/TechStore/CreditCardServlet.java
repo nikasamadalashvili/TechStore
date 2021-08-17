@@ -13,17 +13,18 @@ import java.io.IOException;
 
 @WebServlet(name = "creditCard-add", value="/creditCard-add")
 public class CreditCardServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CreditCardService service = (CreditCardService) req.getServletContext().getAttribute("cardService");
-        CreditCardRequest cardRequest = CreditCardRequest.builder()
-                .userId(4L)
-                .build();
-        CreditCardResponse response = service.getCreditCardInfo(cardRequest);
-        req.setAttribute("ccnumber",response.getCardNumber());
-        req.setAttribute("cvv",response.getCvv());
-        req.setAttribute("expdata",response.getExpiryDate());
-        req.setAttribute("viewName","credit-card-view.jsp");
+//        CreditCardService service = (CreditCardService) req.getServletContext().getAttribute("cardService");
+//        CreditCardRequest cardRequest = CreditCardRequest.builder()
+//                .userId(4L)
+//                .build();
+//        CreditCardResponse response = service.getCreditCardInfo(cardRequest);
+//        req.setAttribute("ccnumber",response.getCardNumber());
+//        req.setAttribute("cvv",response.getCvv());
+//        req.setAttribute("expdata",response.getExpiryDate());
+        req.setAttribute("viewName","creditcard-add.jsp");
         req.getRequestDispatcher("/main.jsp").forward(req, resp);
     }
 
@@ -45,7 +46,7 @@ public class CreditCardServlet extends HttpServlet {
                 resp.sendRedirect("/profile");
         } else {
             req.setAttribute("can",hasAdded);
-           resp.sendRedirect("/creditcard-add");
+           resp.sendRedirect("/creditCard-add");
         }
     }
 }

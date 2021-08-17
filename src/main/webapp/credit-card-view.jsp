@@ -11,7 +11,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css" rel="stylesheet">
-<form action="profile" method="get">
     <div class="padding">
         <div class="row">
             <div class="col-sm-6">
@@ -50,16 +49,16 @@
                         </div>
                     </div>
                     <div class="card-footer">
+                        <form action="profile" method="get">
                         <button class="btn btn-sm btn-success float-right" type="submit">
                             <i class="mdi mdi-gamepad-circle"></i> Back to Profile</button>
-                        <button class="btn btn-sm btn-danger" type="reset">
-                            <i class="mdi mdi-lock-reset"></i> Reset</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+
 
 <style type="text/css">
     .padding {

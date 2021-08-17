@@ -1,12 +1,6 @@
 package web.app.TechStore.TechStore;
 
 import lombok.SneakyThrows;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.tika.mime.MimeType;
-import org.apache.tika.mime.MimeTypes;
 import web.app.TechStore.TechStore.service.UserService;
 import web.app.TechStore.TechStore.service.models.UserDetails;
 import web.app.TechStore.TechStore.service.models.UserDetailsRequest;
