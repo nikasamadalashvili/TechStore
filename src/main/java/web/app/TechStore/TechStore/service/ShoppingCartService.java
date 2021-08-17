@@ -93,12 +93,27 @@ public class ShoppingCartService {
         query.setParameter("givenUserId", request.getUserId());
         List<ShoppingCartObjects> result = query.getResultList();
         Double totalCost = 0.0;
-        for (ShoppingCartObjects x: result
-             ) {
+        for (ShoppingCartObjects x: result) {
             totalCost += x.getTotalCostImmutable();
         }
 
         return new ShoppingCartObjectsByUserResponse(result, totalCost);
+    }
+
+    /*takes user id, returns total cost (wrapped in classes)*/
+    public BuyCartProductsResponse buyShoppingCartProducts(BuyCartProductsRequest request){
+        ShoppingCartObjectsByUserResponse productsAndCost = getShoppingCartObjectsByUserId
+                (new ShoppingCartObjectsByUserRequest(request.getUserId()));
+        List<ShoppingCartObjects> productList = productsAndCost.getShoppingCartObjects();
+        for (ShoppingCartObjects x: productList) {
+            Products prod = x.getProductByProductId();
+            prod.setReservedQuantity(prod.getReservedQuantity() - x.getTotalQuantityImmutable());
+            entityManager.getTransaction().begin();
+            entityManager.remove(x);
+            entityManager.flush();
+            entityManager.getTransaction().commit();
+        }
+        return new BuyCartProductsResponse(productsAndCost.getTotalCost());
     }
 
 
