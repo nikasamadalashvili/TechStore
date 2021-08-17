@@ -18,10 +18,10 @@
         <class>web.app.TechStore.TechStore.DomainModels.Users</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/techStore"/>
-            <property name="hibernate.connection.driver_class"  value="com.mysql.cj.jdbc.Driver"/>
-            <!--<property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>-->
-            <property name="hibernate.connection.user" value="root"/>
-            <property name="hibernate.connection.password" value="Nikushanika9!"/>
+            <!--<property name="hibernate.connection.driver_class"  value="com.mysql.cj.jdbc.Driver"/>-->
+            <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
+            <property name="hibernate.connection.user" value="nika"/>
+            <property name="hibernate.connection.password" value="Asdasd123"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>

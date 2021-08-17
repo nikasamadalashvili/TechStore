@@ -1,6 +1,6 @@
 package web.app.TechStore.TechStore.Listeners;
 
-import web.app.TechStore.TechStore.service.*;
+import web.app.TechStore.TechStore.Services.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,10 +25,10 @@ public class Listener implements ServletRequestListener {
     public void requestInitialized(ServletRequestEvent sre) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tech-store");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        MobileService mobileService = new MobileService(entityManager);
-        sre.getServletContext().setAttribute("mobileService",mobileService);
-        UserService userService = new UserService(mobileService, entityManager);
-        sre.getServletContext().setAttribute("userService", userService);
+        //MobileService mobileService = new MobileService(entityManager);
+        //sre.getServletContext().setAttribute("mobileService",mobileService);
+        //UserService userService = new UserService(mobileService, entityManager);
+        //sre.getServletContext().setAttribute("userService", userService);
         ShoppingCartService shoppingCartService = new ShoppingCartService(entityManager);
         sre.getServletContext().setAttribute("shoppingCartService", shoppingCartService);
         RoleService roleService = new RoleService(entityManager);

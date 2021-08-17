@@ -1,4 +1,4 @@
-<%@ page import="web.app.TechStore.TechStore.service.models.ShoppingCartObjectsByUserResponse" %>
+<%@ page import="web.app.TechStore.TechStore.Services.models.ShoppingCartObjectsByUserResponse" %>
 <%@ page import="web.app.TechStore.TechStore.DomainModels.ShoppingCartObjects" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -43,7 +43,16 @@
                 </td>
                 <td class="text-center text-lg text-medium">${cart.getTotalCostImmutable()}</td>
                 <td class="text-center text-lg text-medium">-</td>
-                <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <td class="text-center"><a onclick="remove()" class="remove-from-cart" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+                    <script>
+                        function remove() {
+                           <!-- document.getElementById("rmv").submit();-->
+                            $.ajax({
+                                url: '/shopping-cart?object=${cart.getShoppingCardObjID()}',
+                                type: 'PUT'
+                            });
+                        }
+                    </script>
             </tr>
             </c:forEach>
             </tbody>
