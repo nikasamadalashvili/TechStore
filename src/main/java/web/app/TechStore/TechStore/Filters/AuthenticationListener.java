@@ -65,7 +65,8 @@ public class AuthenticationListener implements Filter {
             }
         }
         else {
-            if (request.getCookies() != null && (requestURI.equals("/sign-in") || requestURI.equals("/sign-up"))) {
+            if (request.getCookies() != null && (requestURI.equals("/sign-in") || requestURI.equals("/sign-up"))
+                    && Arrays.stream(request.getCookies()).anyMatch(o -> o.getName().equals("UserName"))) {
                 response.sendRedirect(request.getContextPath() + "/mobiles");
             }
             else {

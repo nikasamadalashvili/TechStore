@@ -14,6 +14,7 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container">
 <form action="/sign-up" enctype="multipart/form-data" method="post">
     <div class="mb-3">
         <label for="FirstName" class="form-label">First Name</label>
@@ -36,6 +37,9 @@
         <input type="password" class="form-control" id="Password" name="Password">
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+
 </form>
+
+</div>
 </body>
 </html>
