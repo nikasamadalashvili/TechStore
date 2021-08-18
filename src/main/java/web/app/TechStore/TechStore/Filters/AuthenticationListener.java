@@ -50,12 +50,22 @@ public class AuthenticationListener implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String requestURI = request.getRequestURI();
+        Cookie userCookie = null;
+        if (request.getCookies() != null
+                    && Arrays.stream(request.getCookies()).anyMatch(o -> o.getName().equals("UserName"))) {
+            Query query = entityManager.createQuery("select u from Users u where u.username = :username");
+            Optional<Cookie> techStoreAuthentication = Arrays.stream(request.getCookies())
+                    .filter(cookie -> cookie.getName().equals("UserName"))
+                    .findFirst();
+            userCookie = techStoreAuthentication.get();
+            query.setParameter("username", userCookie.getValue());
+            Users user = (Users) query.getSingleResult();
+            request.setAttribute("SignedUser", user);
+        }
         if (urlAndRolesMapping.containsKey(requestURI)) {
             if (request.getCookies() != null) {
-                Optional<Cookie> techStoreAuthentication = Arrays.stream(request.getCookies())
-                        .filter(cookie -> cookie.getName().equals("UserName"))
-                        .findFirst();
-                if (!techStoreAuthentication.isPresent() || hasRight(techStoreAuthentication.get(), requestURI))
+                Users user = (Users) request.getAttribute("SignedUser");
+                if (user == null || userCookie == null || !hasRight(user, userCookie, requestURI))
                     response.sendRedirect(request.getContextPath() + "/sign-in");
                 else {
                     filterChain.doFilter(servletRequest, servletResponse);
@@ -75,11 +85,8 @@ public class AuthenticationListener implements Filter {
         }
     }
 
-    private boolean hasRight(Cookie userCookie, String url){
+    private boolean hasRight(Users user, Cookie userCookie, String url){
         //TechStoreAuthenticationCookieModel cookieModel = JsonbBuilder.create().fromJson(userCookie.getValue(), TechStoreAuthenticationCookieModel.class);
-        Query query = entityManager.createQuery("select u from Users u where u.username = :username");
-        query.setParameter("username", userCookie.getValue());
-        Users user = (Users) query.getSingleResult();
 
         long result = user.getRolesByRoleId().getRoleClaim() & urlAndRolesMapping.get(url).ordinal();
 

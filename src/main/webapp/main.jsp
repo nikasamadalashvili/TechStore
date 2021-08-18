@@ -1,4 +1,4 @@
-<%--
+<%@ page import="web.app.TechStore.TechStore.DomainModels.Users" %><%--
   Created by IntelliJ IDEA.
   User: nika
   Date: 16.08.21
@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
     String mainViewName = (String) request.getAttribute("viewName");
+    Users user = (Users)request.getAttribute("SignedUser");
+    String greeting = user == null ? "" : user.getFirstName() + "'s";
 %>
 <html>
 <head>
@@ -68,7 +70,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="/shopping-cart" class="nav-link waves-effect">
-                            Shop
+                            <%=greeting%>Shop
                         </a>
                     </li>
                     <li class="nav-item">
@@ -76,20 +78,26 @@
                             Contact
                         </a>
                     </li>
+                    <c:if test = "${SignedUser == null}">
                     <li class="nav-item">
                         <a href="/sign-in" class="nav-link waves-effect">
                             Sign in
                         </a>
                     </li>
+                    </c:if>
+                    <c:if test = "${SignedUser != null}">
                     <li class="nav-item">
                         <a href="sign-out" class="nav-link waves-effect">
                             Sign out
                         </a>
                     </li>
+                    </c:if>
+                    <c:if test = "${SignedUser != null}">
                     <li class="nav-item pl-2 mb-2 mb-md-0">
                         <a href="/profile" type="button"
                            class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light">profile</a>
                     </li>
+                    </c:if>
                 </ul>
 
             </div>
