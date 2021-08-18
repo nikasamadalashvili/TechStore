@@ -16,22 +16,12 @@ public class Users {
     private String password;
     private String image;
     private Roles rolesByRoleId;
-
-    @Column(name = "salt", unique = true)
     private String salt;
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 
     public Users() {
     }
 
-    public Users(long userId, String firstName, String lastName, String email, String username, String password, String image, Roles rolesByRoleId, String salt) {
+    public Users(long userId, String firstName, String lastName, String email, String username, String password, String image, Roles rolesByRoleId,String salt) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,6 +43,12 @@ public class Users {
     public void setUserId(long userId) {
         this.userId = userId;
     }
+
+    @Basic
+    @Column(name = "salt", nullable = false, length = 64)
+    public String getSalt() { return salt;}
+
+    public void setSalt(String salt) { this.salt = salt;}
 
     @Basic
     @Column(name = "first_name", nullable = true, length = 64)
