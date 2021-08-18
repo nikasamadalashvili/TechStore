@@ -34,188 +34,79 @@
 
     <!-- Section: Filters -->
     <section class="filters">
+      <section class="mb-4">
+        <h6 class="font-weight-bold mb-3">RAM</h6>
+        <c:forEach var="ram" items="${rams}">
+          <div class="form-check pl-0 mb-3">
+            <input
+                    type="checkbox"
+                    class="form-check-input filled-in"
+                    id="${ram}"
+                    onclick="filterBrands()"
+            />
+            <label
+                    class="form-check-label small text-uppercase card-link-secondary"
+                    for="${ram}"
+            >${ram.substring(1)}</label
+            >
+          </div>
+        </c:forEach>
       <h5>Filters</h5>
 
       <!-- Section: Condition -->
-      <section class="mb-4">
-        <h6 class="font-weight-bold mb-3">Condition</h6>
-
+      <section-- class="mb-4">
+        <h6 class="font-weight-bold mb-3">Brands</h6>
+        <c:forEach var="brand" items="${brands}">
         <div class="form-check pl-0 mb-3">
           <input
                   type="checkbox"
                   class="form-check-input filled-in"
-                  id="new"
+                  id="${brand}"
+                  onclick="filterBrands()"
           />
           <label
                   class="form-check-label small text-uppercase card-link-secondary"
-                  for="new"
-          >New</label
+                  for="${brand}"
+          >${brand}</label
           >
         </div>
-        <div class="form-check pl-0 mb-3">
-          <input
-                  type="checkbox"
-                  class="form-check-input filled-in"
-                  id="used"
-          />
-          <label
-                  class="form-check-label small text-uppercase card-link-secondary"
-                  for="used"
-          >Used</label
-          >
-        </div>
-        <div class="form-check pl-0 mb-3">
-          <input
-                  type="checkbox"
-                  class="form-check-input filled-in"
-                  id="collectible"
-          />
-          <label
-                  class="form-check-label small text-uppercase card-link-secondary"
-                  for="collectible"
-          >Collectible</label
-          >
-        </div>
-        <div class="form-check pl-0 mb-3 pb-1">
-          <input
-                  type="checkbox"
-                  class="form-check-input filled-in"
-                  id="renewed"
-          />
-          <label
-                  class="form-check-label small text-uppercase card-link-secondary"
-                  for="renewed"
-          >Renewed</label
-          >
-        </div>
-      </section>
+        </c:forEach>
+      <!--/section-->
       <!-- Section: Condition -->
-
-      <!-- Section: Average -->
-      <section>
-        <h6 class="font-weight-bold mb-3">Avg. Customer Review</h6>
-
-        <label for="customer-rating-4" class="z-depth-0 py-0">
-          <ul class="rating waves-light mb-0">
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <p class="small text-uppercase card-link-secondary px-2">
-                & Up
-              </p>
-            </li>
-          </ul>
-          <input
-                  id="customer-rating-4"
-                  class="filter-option"
-                  type="checkbox"
-          />
-        </label>
-        <br />
-        <label for="customer-rating-3" class="z-depth-0 py-0">
-          <ul class="rating waves-light mb-0">
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <p class="small text-uppercase card-link-secondary px-2">
-                & Up
-              </p>
-            </li>
-          </ul>
-          <input
-                  id="customer-rating-3"
-                  class="filter-option"
-                  type="checkbox"
-          />
-        </label>
-        <br />
-        <label for="customer-rating-2" class="z-depth-0 py-0">
-          <ul class="rating waves-light mb-0">
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <p class="small text-uppercase card-link-secondary px-2">
-                & Up
-              </p>
-            </li>
-          </ul>
-          <input
-                  id="customer-rating-2"
-                  class="filter-option"
-                  type="checkbox"
-          />
-        </label>
-        <br />
-        <label for="customer-rating-1" class="z-depth-0 py-0">
-          <ul class="rating waves-light mb-0">
-            <li>
-              <i class="fas fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <i class="far fa-star fa-sm text-primary"></i>
-            </li>
-            <li>
-              <p class="small text-uppercase card-link-secondary px-2">
-                & Up
-              </p>
-            </li>
-          </ul>
-          <input
-                  id="customer-rating-1"
-                  class="filter-option"
-                  type="checkbox"
-          />
-        </label>
-      </section>
-      <!-- Section: Average -->
+      <!--section class="filters"-->
+        <!-- Section: Condition -->
+        </section>
+        <script>
+          function filterBrands() {
+            let checkedRams = [];
+            ${rams}.forEach((ram) => {
+              if(ram.checked) {
+                checkedRams.push(ram.id);
+              } else {
+                console.log("no");
+              }
+            });
+            let checkedBrands = [];
+            ${brands}.forEach((brand) => {
+              if(brand.checked) {
+                checkedBrands.push(brand.id);
+              }
+            });
+            console.log(${rams});
+            console.log(checkedBrands);
+            let array = [checkedBrands,checkedRams];
+            console.log(array);
+            $.ajax({
+              url: '/mobiles',
+              type: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify(array),
+              success: function(data) {
+                data.redirect();
+              }
+            });
+          }
+        </script>
 
       <!-- Section: Price -->
       <section class="mb-4">

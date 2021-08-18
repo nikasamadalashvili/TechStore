@@ -375,4 +375,14 @@ public class MobileService {
 
         return new DeleteProductResponse(true);
     }
+
+    public GetBrandsResponse getBrands() {
+        List<String> brands = entityManager.createQuery("select distinct p.brand from Products p").getResultList();
+        return GetBrandsResponse.builder().brands(brands).build();
+    }
+
+    public GetRamResponse getRam() {
+        List<String> rams = entityManager.createQuery("select distinct m.ram from Memory m").getResultList();
+        return GetRamResponse.builder().rams(rams).build();
+    }
 }
