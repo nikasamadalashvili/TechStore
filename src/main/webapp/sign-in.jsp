@@ -35,16 +35,16 @@
 <body class="text-center">
 
 <main class="form-signin">
-    <form>
+    <form method="post" action="/sign-in" enctype="multipart/form-data">
         <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="UserName" name="UserName">
+            <label for="floatingInput">UserName</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password">
             <label for="floatingPassword">Password</label>
         </div>
 
@@ -56,7 +56,12 @@
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
-    <button class="w-100 btn btn-lg btn-primary"><a href="/sign-up">Sign up</a></button>
+    <button onclick="goToSignUp()" class="w-100 btn btn-lg btn-primary">Sign up</button>
 </main>
 </body>
+<script>
+    function goToSignUp() {
+        location.href = '/sign-up';
+    }
+</script>
 </html>

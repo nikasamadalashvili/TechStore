@@ -17,4 +17,16 @@ public class SecurityUtils {
         byte[] bytes = digest.digest(target.getBytes());
         return Base64.getEncoder().encodeToString(bytes);
     }
+
+    public static String generateRandomString(){
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        return random.ints(leftLimit, rightLimit + 1)
+                .limit(SALT_SIZE)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+    }
 }

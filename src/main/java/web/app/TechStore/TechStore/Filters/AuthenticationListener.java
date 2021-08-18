@@ -57,12 +57,20 @@ public class AuthenticationListener implements Filter {
                         .findFirst();
                 if (!techStoreAuthentication.isPresent() || hasRight(techStoreAuthentication.get(), requestURI))
                     response.sendRedirect(request.getContextPath() + "/sign-in");
+                else {
+                    filterChain.doFilter(servletRequest, servletResponse);
+                }
             } else {
                 response.sendRedirect(request.getContextPath() + "/sign-in");
             }
         }
         else {
-            filterChain.doFilter(servletRequest, servletResponse);
+            if (request.getCookies() != null && (requestURI.equals("/sign-in") || requestURI.equals("/sign-up"))) {
+                response.sendRedirect(request.getContextPath() + "/mobiles");
+            }
+            else {
+                filterChain.doFilter(servletRequest, servletResponse);
+            }
         }
     }
 

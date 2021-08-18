@@ -77,8 +77,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#!" class="nav-link waves-effect">
+                        <a href="/sign-in" class="nav-link waves-effect">
                             Sign in
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="sign-out" class="nav-link waves-effect">
+                            Sign out
                         </a>
                     </li>
                     <li class="nav-item pl-2 mb-2 mb-md-0">

@@ -42,11 +42,9 @@ public class AuthenticationService {
     }
 
     public SignUpUserResponse signUpUser(SignUpUserRequest request) {
-        Random rand = new Random();
-        byte[] saltArr = new byte[SecurityUtils.SALT_SIZE];
-        rand.nextBytes(saltArr);
+        String salt = SecurityUtils.generateRandomString();
         AddNewUserResponse addNewUserResponse = userService.addNewUser(new UserDetails(request.FirstName, request.LastName,
-                request.Email, request.UserName, request.Password, new String(saltArr, StandardCharsets.UTF_8), "testImage.jpg"));
+                request.Email, request.UserName, SecurityUtils.getHashedValue(request.Password, salt.getBytes()), salt, "testImage.jpg"));
         SignUpUserResponse response = new SignUpUserResponse();
         response.HasSucceeded = addNewUserResponse.IsSuccess;
         response.User = addNewUserResponse.User;
