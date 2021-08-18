@@ -1,6 +1,7 @@
 package web.app.TechStore.TechStore.Services;
 
 import web.app.TechStore.TechStore.DomainModels.Users;
+import web.app.TechStore.TechStore.Services.models.AddNewUserResponse;
 import web.app.TechStore.TechStore.Services.models.UserDetails;
 import web.app.TechStore.TechStore.Services.models.UserDetailsRequest;
 
@@ -26,17 +27,17 @@ public class UserService {
         return UserDetails.UserToDetails(user);
     }
 
-    public boolean addNewUser(UserDetails details) {
+    public AddNewUserResponse addNewUser(UserDetails details) {
         Users users = UserDetails.DetailsToUser(details);
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(users);
             entityManager.flush();
             entityManager.getTransaction().commit();
-            return true;
+            return new AddNewUserResponse(users, true);
         } catch(Exception e) {
             entityManager.getTransaction().rollback();
-            return false;
+            return new AddNewUserResponse(null, false);
         }
     }
 

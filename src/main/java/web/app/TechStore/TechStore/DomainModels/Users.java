@@ -17,10 +17,21 @@ public class Users {
     private String image;
     private Roles rolesByRoleId;
 
+    @Column(name = "salt", unique = true)
+    private String salt;
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
     public Users() {
     }
 
-    public Users(long userId, String firstName, String lastName, String email, String username, String password, String image, Roles rolesByRoleId) {
+    public Users(long userId, String firstName, String lastName, String email, String username, String password, String image, Roles rolesByRoleId, String salt) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +40,7 @@ public class Users {
         this.password = password;
         this.image = image;
         this.rolesByRoleId = rolesByRoleId;
+        this.salt = salt;
     }
 
     @Id

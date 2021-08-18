@@ -14,6 +14,7 @@ public class UserDetails {
     private String username;
     private String password;
     private String image;
+    private String salt;
 
     public static UserDetails UserToDetails(Users user) {
         return UserDetails.builder()
@@ -32,16 +33,18 @@ public class UserDetails {
                 .username(response.getUsername())
                 .image(response.getImage())
                 .password(response.getPassword())
+                .salt(response.getSalt())
                 .build();
     }
 
-    public UserDetails(String firstName, String lastName, String email, String username, String password, String image) {
+    public UserDetails(String firstName, String lastName, String email, String username, String password, String salt,String image) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         this.password = password;
         this.image = image;
+        this.salt = salt;
     }
 
     public UserDetails() {
