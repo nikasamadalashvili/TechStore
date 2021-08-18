@@ -8,14 +8,19 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.tika.mime.MimeType;
 import org.apache.tika.mime.MimeTypes;
 import web.app.TechStore.TechStore.Services.AuthenticationService;
-import web.app.TechStore.TechStore.Services.models.*;
+import web.app.TechStore.TechStore.Services.models.AuthenticationRequest;
+import web.app.TechStore.TechStore.Services.models.AuthenticationResponse;
 
-import java.io.*;
-import java.util.UUID;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.UUID;
 
 @WebServlet(name = "helloServlet", value = "/product-servlet")
 public class ProductServlet extends HttpServlet {

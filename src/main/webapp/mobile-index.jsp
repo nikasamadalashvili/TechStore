@@ -102,7 +102,25 @@
               contentType: 'application/json',
               data: JSON.stringify(array),
               success: function(data) {
-                data.redirect();
+                let myDiv = document.getElementById('mobile-list');
+                myDiv.innerHTML = '';
+                  data.forEach((obj) => {
+                    myDiv.innerHTML+=`<div class="col-md-4 mb-5">
+        <div class="card shadow-sm">
+          <img src="images/`+ obj.imageName +`" class="img-fluid">
+          <div class="card-body">
+            <p class="card-text">Name:`+obj.name +`, Price:` + obj.price +`</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="mobile-details?mobileId=`+ obj.productId +`">View</a></button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>`;
+                  })
               }
             });
           }
@@ -386,7 +404,7 @@
 </div>
 <div class="col-md-8 mb-4">
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="mobile-list">
       <jsp:useBean id="mobiles" scope="request" type="java.util.List"/>
       <c:forEach var="mobile" items="${mobiles}">
         <!--<div class="col">

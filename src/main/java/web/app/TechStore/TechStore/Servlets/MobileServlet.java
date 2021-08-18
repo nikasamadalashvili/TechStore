@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Servlets;
 
+import com.google.gson.Gson;
 import web.app.TechStore.TechStore.Services.AuthenticationService;
 import web.app.TechStore.TechStore.Services.MobileService;
 import web.app.TechStore.TechStore.Services.models.FilteredMobileListRequest;
@@ -13,6 +14,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,7 +57,13 @@ public class MobileServlet extends HttpServlet {
         request.setAttribute("brands",mobileService.getBrands().getBrands());
         request.setAttribute("rams",mobileService.getRam().getRams());
         request.setAttribute("mobiles", filteredMobileList.getFilteredProducts());
-        request.setAttribute("viewName", "mobile-index.jsp");
-        request.getRequestDispatcher("main.jsp").forward(request, response);
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        String mobiles = new Gson().toJson(filteredMobileList.getFilteredProducts());
+        out.print(mobiles);
+        out.flush();
+        //request.setAttribute("viewName", "mobile-index.jsp");
+        //request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 }
