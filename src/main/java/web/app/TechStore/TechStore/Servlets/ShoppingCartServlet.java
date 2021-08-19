@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Servlets;
 
+import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.Services.ShoppingCartService;
 import web.app.TechStore.TechStore.Services.models.*;
 
@@ -7,13 +8,10 @@ import javax.inject.Inject;
 import javax.json.bind.JsonbBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "ShoppingCart", value = "/shopping-cart")
 public class ShoppingCartServlet extends HttpServlet {
@@ -23,8 +21,9 @@ public class ShoppingCartServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Users user = (Users) req.getAttribute("SignedUser");
         ShoppingCartObjectsByUserResponse shoppingCartObjectsByUserResponse =
-                shoppingCartService.getShoppingCartObjectsByUserId(new ShoppingCartObjectsByUserRequest(4l));
+                shoppingCartService.getShoppingCartObjectsByUserId(new ShoppingCartObjectsByUserRequest(user.getUserId()));
         req.setAttribute("cartProducts", shoppingCartObjectsByUserResponse.getShoppingCartObjects());
         req.setAttribute("totalCost", shoppingCartObjectsByUserResponse.getTotalCost());
         req.setAttribute("viewName", "shoppingCart.jsp");
@@ -34,22 +33,22 @@ public class ShoppingCartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
-        long userID = 4l;
+        Users user = (Users) req.getAttribute("SignedUser");
         long productID = Long.parseLong(req.getParameter("productId"));
         Integer productQuantity = Integer.parseInt(req.getParameter("productQuantity"));
         AddShoppingCartObjectResponse addShoppingCartObjectResponse =
-                shoppingCartService.addShoppingCardObject(new AddShoppingCartObjectRequest(productID,userID,productQuantity));
+                shoppingCartService.addShoppingCardObject(new AddShoppingCartObjectRequest(productID,user.getUserId(),productQuantity));
         resp.sendRedirect("/shopping-cart");
-
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Users user = (Users) req.getAttribute("SignedUser");
         if(req.getParameter("object") != null) {
             shoppingCartService.deleteShoppingCartObject(new DeleteShoppingCartObjectRequest(Long.parseLong(req.getParameter("object"))));
         } else {
             BuyCartProductsResponse deleteShoppingCartObjectResponse =
-                    shoppingCartService.buyShoppingCartProducts(new BuyCartProductsRequest(4l));
+                    shoppingCartService.buyShoppingCartProducts(new BuyCartProductsRequest(user.getUserId()));
         }
     }
 

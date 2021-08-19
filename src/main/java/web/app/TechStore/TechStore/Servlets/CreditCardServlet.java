@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Servlets;
 
+import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.Services.CreditCardService;
 import web.app.TechStore.TechStore.Services.models.CreditCardRequest;
 
@@ -25,11 +26,12 @@ public class CreditCardServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Users user = (Users) req.getAttribute("SignedUser");
         CreditCardRequest cardRequest = CreditCardRequest.builder()
                 .cardNumber(req.getParameter("ccnumber"))
                 .cvv(req.getParameter("cvv"))
                 .expiryDate(req.getParameter("expdata"))
-                .userId(4L)
+                .userId(user.getUserId())
                 .build();
 
         boolean hasAdded = cardService.addCreditCard(cardRequest);

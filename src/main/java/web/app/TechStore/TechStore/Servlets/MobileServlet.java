@@ -49,7 +49,8 @@ public class MobileServlet extends HttpServlet {
        String[][] aa =  JsonbBuilder.create().fromJson(request.getReader(), String[][].class);
         List<String> brands = Arrays.asList(aa[0]);
         List<String> rams = Arrays.asList(aa[1]);
-        FilteredMobileListResponse filteredMobileList = mobileService.getFilteredMobileList(new FilteredMobileListRequest(null,
+        List<String> text = Arrays.asList(aa[2]);
+        FilteredMobileListResponse filteredMobileList = mobileService.getFilteredMobileList(new FilteredMobileListRequest(text.get(0),
                 brands, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), rams, new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),

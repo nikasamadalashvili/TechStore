@@ -173,7 +173,7 @@
                             <div class="def-number-input number-input safari_only mb-0">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                         class="minus"></button>
-                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                         class="plus"></button>
                             </div>
@@ -202,9 +202,9 @@
                     </tbody>
                 </table>
             </div>
-            <form method="post" action="shopping-cart?userId=4&productId=${mobileDetails.productId}&productQuantity=1">
+            <form id="shopping-cart" method="post" action="shopping-cart?userId=4&productId=${mobileDetails.productId}&productQuantity="+>
                 <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Buy now</button>
-                <button type="submit" class="btn btn-light btn-md mr-1 mb-2"><i
+                <button onclick="submitShoppingCart()" class="btn btn-light btn-md mr-1 mb-2"><i
                         class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
             </form>
         </div>
@@ -212,3 +212,10 @@
 
 </section>
 <!--Section: Block Content-->
+<script>
+    function submitShoppingCart() {
+        let form = document.getElementById('shopping-cart');
+        form.action += document.getElementById('quantity').value;
+        form.submit();
+    }
+</script>

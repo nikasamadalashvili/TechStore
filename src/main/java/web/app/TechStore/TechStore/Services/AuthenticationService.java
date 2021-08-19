@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Services;
 
+import web.app.TechStore.TechStore.DomainModels.Roles;
 import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.Services.models.*;
 import web.app.TechStore.TechStore.Utils.SecurityUtils;
@@ -43,8 +44,9 @@ public class AuthenticationService {
 
     public SignUpUserResponse signUpUser(SignUpUserRequest request) {
         String salt = SecurityUtils.generateRandomString();
+        Roles roles = (Roles) entityManager.createQuery("select r from Roles r where r.roleName = 'customer'").getSingleResult();
         AddNewUserResponse addNewUserResponse = userService.addNewUser(new UserDetails(request.FirstName, request.LastName,
-                request.Email, request.UserName, SecurityUtils.getHashedValue(request.Password, salt.getBytes()), salt, "testImage.jpg"));
+                request.Email, request.UserName, SecurityUtils.getHashedValue(request.Password, salt.getBytes()), salt, "testImage.jpg",roles));
         SignUpUserResponse response = new SignUpUserResponse();
         response.HasSucceeded = addNewUserResponse.IsSuccess;
         response.User = addNewUserResponse.User;

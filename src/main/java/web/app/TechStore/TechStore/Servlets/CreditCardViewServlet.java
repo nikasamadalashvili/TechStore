@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Servlets;
 
+import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.Services.CreditCardService;
 import web.app.TechStore.TechStore.Services.models.CreditCardRequest;
 import web.app.TechStore.TechStore.Services.models.CreditCardResponse;
@@ -20,8 +21,9 @@ public class CreditCardViewServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Users user = (Users) req.getAttribute("SignedUser");
         CreditCardRequest cardRequest = CreditCardRequest.builder()
-                .userId(4L)
+                .userId(user.getUserId())
                 .build();
 
         CreditCardResponse response = cardService.getCreditCardInfo(cardRequest);
@@ -34,11 +36,11 @@ public class CreditCardViewServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CreditCardService service = (CreditCardService) req.getServletContext().getAttribute("cardService");
+        Users user = (Users) req.getAttribute("SignedUser");
         CreditCardRequest cardRequest = CreditCardRequest.builder()
-                .userId(4L)
+                .userId(user.getUserId())
                 .build();
-        service.deleteCreditCard(cardRequest);
+        cardService.deleteCreditCard(cardRequest);
         resp.sendRedirect("/profile");
     }
 }

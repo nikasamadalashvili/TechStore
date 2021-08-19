@@ -24,10 +24,11 @@ public class AuthenticationListener implements Filter {
     @Inject
     private EntityManager entityManager;
 
-    private static final HashMap<String, RoleClaimType> urlAndRolesMapping = new HashMap<String, RoleClaimType>() {{
-       put("/creditCard-add", RoleClaimType.CREDIT_CARD);
-       put("/creditCard-add", RoleClaimType.SHOPPING_CARD);
-       put("/profile", RoleClaimType.SHOPPING_CARD);
+    private static final HashMap<String, Integer> urlAndRolesMapping = new HashMap<String, Integer>() {{
+       put("/creditCard-add", RoleClaimType.CREDIT_CARD.getValue());
+       put("/profile", RoleClaimType.PROFILE.getValue());
+       put("/shopping-cart", RoleClaimType.SHOPPING_CARD.getValue());
+       put("/creditCard-view", RoleClaimType.CREDIT_CARD.getValue());
     }};
 
     private static final HashSet<String> nonAuthenticatedUserUrls = new HashSet<String>() {{
@@ -88,9 +89,9 @@ public class AuthenticationListener implements Filter {
     private boolean hasRight(Users user, Cookie userCookie, String url){
         //TechStoreAuthenticationCookieModel cookieModel = JsonbBuilder.create().fromJson(userCookie.getValue(), TechStoreAuthenticationCookieModel.class);
 
-        long result = user.getRolesByRoleId().getRoleClaim() & urlAndRolesMapping.get(url).ordinal();
+        long result = user.getRolesByRoleId().getRoleClaim() & urlAndRolesMapping.get(url);
 
-        return user == null && result > 0;
+        return user != null && result > 0;
     }
 
     @Override

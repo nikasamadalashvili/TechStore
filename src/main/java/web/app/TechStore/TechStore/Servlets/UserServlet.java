@@ -1,5 +1,6 @@
 package web.app.TechStore.TechStore.Servlets;
 
+import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.Services.UserService;
 import web.app.TechStore.TechStore.Services.models.UserDetails;
 import web.app.TechStore.TechStore.Services.models.UserDetailsRequest;
@@ -20,7 +21,8 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDetailsRequest detailsRequest = new UserDetailsRequest(4L);
+        Users user = (Users) req.getAttribute("SignedUser");
+        UserDetailsRequest detailsRequest = new UserDetailsRequest(user.getUserId());
 
         UserDetails userDetails = userService.getUserDetails(detailsRequest);
         if(userDetails != null) {

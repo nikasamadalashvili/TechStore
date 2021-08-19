@@ -10,6 +10,7 @@ public class ShoppingCartObjectsByUserResponse {
 
     public ShoppingCartObjectsByUserResponse(List<ShoppingCartObjects> shoppingCartObjects, Double totalCost) {
         this.shoppingCartObjects = shoppingCartObjects;
+        this.totalCost = totalCost;
     }
 
     public List<ShoppingCartObjects> getShoppingCartObjects() {

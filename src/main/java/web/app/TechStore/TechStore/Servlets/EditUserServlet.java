@@ -1,6 +1,7 @@
 package web.app.TechStore.TechStore.Servlets;
 
 import lombok.SneakyThrows;
+import web.app.TechStore.TechStore.DomainModels.Users;
 import web.app.TechStore.TechStore.Services.UserService;
 import web.app.TechStore.TechStore.Services.models.UserDetails;
 import web.app.TechStore.TechStore.Services.models.UserDetailsRequest;
@@ -21,7 +22,8 @@ public class EditUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDetailsRequest detailsRequest = new UserDetailsRequest(4L);
+        Users user = (Users) req.getAttribute("SignedUser");
+        UserDetailsRequest detailsRequest = new UserDetailsRequest(user.getUserId());
 
         UserDetails userDetails = userService.getUserDetails(detailsRequest);
         if(userDetails != null) {
@@ -37,7 +39,8 @@ public class EditUserServlet extends HttpServlet {
 //        String appPath = "/home/nika/Desktop/TechStore/src/main/webapp/images/";
 //        FileItemFactory factory = new DiskFileItemFactory();
 //        ServletFileUpload upload = new ServletFileUpload(factory);
-        UserDetailsRequest detailsRequest = new UserDetailsRequest(4L);
+        Users user = (Users) req.getAttribute("SignedUser");
+        UserDetailsRequest detailsRequest = new UserDetailsRequest(user.getUserId());
         UserDetails userDetails = new UserDetails(req.getParameter("firstName"),req.getParameter("lastName"),
                 req.getParameter("email"), req.getParameter("username"),"");
 //        HashMap<String, String> parameters = new HashMap<>();

@@ -2,6 +2,7 @@ package web.app.TechStore.TechStore.Services.models;
 
 import lombok.Builder;
 import lombok.Data;
+import web.app.TechStore.TechStore.DomainModels.Roles;
 import web.app.TechStore.TechStore.DomainModels.Users;
 
 @Builder
@@ -15,6 +16,7 @@ public class UserDetails {
     private String password;
     private String image;
     private String salt;
+    private Roles roles;
 
     public static UserDetails UserToDetails(Users user) {
         return UserDetails.builder()
@@ -34,10 +36,11 @@ public class UserDetails {
                 .image(response.getImage())
                 .password(response.getPassword())
                 .salt(response.getSalt())
+                .rolesByRoleId(response.getRoles())
                 .build();
     }
 
-    public UserDetails(String firstName, String lastName, String email, String username, String password, String salt,String image) {
+    public UserDetails(String firstName, String lastName, String email, String username, String password, String salt, String image, Roles roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -45,6 +48,7 @@ public class UserDetails {
         this.password = password;
         this.image = image;
         this.salt = salt;
+        this.roles = roles;
     }
 
     public UserDetails() {
